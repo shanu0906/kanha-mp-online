@@ -1,305 +1,362 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanha MP Online & CSC Service Center</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f7f6; color: #333; }
-        
-        /* Top Bar */
-        .top-bar { background: #002c5f; color: white; padding: 10px; text-align: center; font-size: 14px; font-weight: bold; }
-        
-        /* Hero Section */
-        .hero { background: linear-gradient(135deg, #0056b3, #00a8cc); color: white; padding: 50px 20px; text-align: center; }
-        .hero h1 { font-size: 32px; margin-bottom: 10px; font-weight: 800; }
-        .hero p { font-size: 18px; margin-bottom: 20px; background: rgba(0,0,0,0.2); display: inline-block; padding: 5px 15px; border-radius: 20px; }
-        .hero .owner { font-size: 16px; margin-bottom: 25px; font-weight: 500; }
-        
-        /* Action Buttons */
-        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn { padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-whatsapp { background: #25D366; color: white; }
-        .btn-call { background: #ff9800; color: white; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
-
-        /* Container */
-        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
-        
-        /* Section Titles */
-        .section-title { text-align: center; font-size: 26px; color: #002c5f; margin-bottom: 30px; position: relative; }
-        .section-title::after { content: ''; width: 60px; height: 3px; background: #ff9800; display: block; margin: 8px auto auto; }
-
-        /* Services Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #0056b3; }
-        .card h3 { color: #0056b3; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
-        .card ul { list-style: none; }
-        .card ul li { padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 15px; }
-        .card ul li::before { content: "✔ "; color: #25D366; font-weight: bold; }
-
-        /* Features */
-        .features { display: flex; flex-wrap: wrap; justify-content: space-around; background: white; padding: 30px; border-radius: 10px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .feature-box { text-align: center; padding: 10px; max-width: 200px; }
-        .feature-box h4 { color: #002c5f; margin-top: 10px; }
-
-        /* Footer / Contact */
-        .footer { background: #002c5f; color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }
-        .footer h2 { color: #ff9800; margin-bottom: 15px; }
-        .footer p { margin: 8px 0; font-size: 16px; }
-        
-        /* Floating Buttons */
-        .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; display: flex; align-items: center; gap: 8px; }
-        .floating-call { position: fixed; bottom: 20px; left: 20px; background: #0056b3; color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
-        
-        @media(max-width: 600px) {
-            .hero h1 { font-size: 24px; }
-            .floating-wa, .floating-call { font-size: 14px; padding: 10px 15px; }
+    <title>Kanha MP Online & CSC Service Center | Sarkari Result & Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#d97706',
+                    }
+                }
+            }
         }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300">
 
-    <div class="top-bar">
-        📢 सभी सरकारी फॉर्म, पैन कार्ड व आधार संबंधित कार्य तसल्ली से किए जाते हैं।
-    </div>
-
-    <div class="hero">
-        <h1>Kanha MP Online & CSC Service Center</h1>
-        <p>"आपकी हर जरूरत का डिजिटल समाधान"</p>
-        <div class="owner">👤 Prop. Jaggu Prasad Soni | 📍 District Anuppur (M.P.)</div>
-        
-        <div class="btn-container">
-            <!-- WhatsApp par direct message ke liye -->
-            <a href="https://wa.me/918989447014?text=Namaste%20Jaggu%20Ji,%20mujhe%20Kanha%20MP%20Online%20se%20ek%20service%20chahiye." class="btn btn-whatsapp" target="_blank">🟢 WhatsApp Now</a>
-            <!-- Direct call karne ke liye -->
-            <a href="tel:8989447014" class="btn btn-call">📞 Call Now: 8989447014</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <h2 class="section-title">🛠️ Our Digital Services</h2>
-        
-        <div class="grid">
-            <div class="card">
-                <h3>🏛️ सरकारी प्रमाण पत्र</h3>
-                <ul>
-                    <li>Income Certificate (आय)</li>
-                    <li>Caste Certificate (जाति)</li>
-                    <li>Domicile Certificate (मूल निवासी)</li>
-                    <li>Passport Assistance</li>
-                    <li>Insurance Services</li>
-                </ul>
+    <!-- TOP HEADER -->
+    <header class="bg-primary text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-500 text-primary font-black px-3 py-1 rounded-lg text-xl shadow">KMP</div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">Kanha MP Online</h1>
+                    <p class="text-xs text-amber-300">CSC Service Center & Digital Citizen Portal</p>
+                </div>
             </div>
             
-            <div class="card">
-                <h3>🪪 आईडी कार्ड व योजनाएं</h3>
-                <ul>
-                    <li>Aadhaar Services</li>
-                    <li>PAN Card</li>
-                    <li>Voter ID Card</li>
-                    <li>Ayushman Card</li>
-                    <li>PM Kisan Yojana</li>
+            <div class="flex items-center space-x-3">
+                <button id="themeToggle" class="p-2 rounded-full bg-blue-900 hover:bg-blue-800 text-amber-300 transition" title="Toggle Theme">
+                    <i class="fa-solid fa-moon text-lg" id="themeIcon"></i>
+                </button>
+                <button onclick="toggleModal('loginModal')" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm transition">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Owner Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- TICKER NEWS -->
+    <div class="bg-amber-500 text-blue-950 font-semibold py-2 px-4 flex items-center shadow-inner">
+        <span class="bg-red-600 text-white text-xs uppercase px-2 py-1 rounded font-bold mr-3 animate-pulse whitespace-nowrap">Latest Updates</span>
+        <marquee class="text-sm font-medium" id="tickerText">
+            Welcome to Kanha MP Online & CSC Center Chakethi Anuppur | Aadhaar, PAN, Samagra, Caste Certificate & All Online Services Available Here!
+        </marquee>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+
+        <!-- NOTICE BOARD & OWNER CARD BANNER -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Notice Board -->
+            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 border-t-4 border-primary">
+                <h2 class="text-lg font-bold text-primary dark:text-amber-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-bullhorn text-amber-500"></i> Notice Board / zaroori soochne
+                </h2>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300" id="noticeBoardList">
+                    <li class="p-2 bg-blue-50 dark:bg-gray-700 rounded border-l-4 border-blue-500">
+                        📌 **MP Online Portal**: Sabhi Prakar Ke Govt Form, Admit Card Aur Result Yahan Se Download Karein.
+                    </li>
+                    <li class="p-2 bg-amber-50 dark:bg-gray-700 rounded border-l-4 border-amber-500">
+                        📌 **Samagra ID & Aadhaar Link**: E-KYC Ki Suvidha Kendra Par Uplabdh Hai.
+                    </li>
                 </ul>
             </div>
-            
-            <div class="card">
-                <h3>💻 डिजिटल व प्रिंटिंग कार्य</h3>
-                <ul>
-                    <li>Online Form Filling</li>
-                    <li>Electricity Bill Payment</li>
-                    <li>Passport Size Photo</li>
-                    <li>Printing & Photocopy</li>
-                    <li>Lamination & All CSC Work</li>
-                </ul>
+
+            <!-- Shop Quick Info Card -->
+            <div class="bg-gradient-to-br from-blue-900 to-primary text-white rounded-xl shadow-md p-5 flex flex-col justify-between">
+                <div>
+                    <span class="bg-amber-400 text-blue-950 text-xs font-bold px-2 py-0.5 rounded uppercase">Authorized Center</span>
+                    <h3 class="text-xl font-bold mt-2">Kanha MP Online</h3>
+                    <p class="text-xs text-gray-200 mt-1"><i class="fa-solid fa-user text-amber-300 mr-1"></i> Owner: **Jaggu Prasad Soni**</p>
+                    <p class="text-xs text-gray-200 mt-1"><i class="fa-solid fa-location-dot text-amber-300 mr-1"></i> Near Baram Baba Prangan, Chakethi Anuppur</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-blue-700/60 flex justify-between items-center text-xs">
+                    <a href="tel:8989447014" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-3 py-1.5 rounded flex items-center gap-1 transition">
+                        <i class="fa-solid fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://wa.me/918989447014" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold px-3 py-1.5 rounded flex items-center gap-1 transition">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title" style="margin-top: 50px;">⭐ Why Choose Us?</h2>
-        <div class="features">
-            <div class="feature-box">
-                <h4>⚡ Fast Service</h4>
-                <p>Bina kisi delay ke turant processing</p>
+        <!-- SARKARI SERVICES LINKS GRID -->
+        <section>
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white border-b-2 border-primary pb-1 inline-block">
+                <i class="fa-solid fa-layer-group text-primary dark:text-amber-400 mr-2"></i> Popular Government Services
+            </h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                
+                <a href="https://uidai.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-address-card"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">Aadhaar Portal</span>
+                </a>
+
+                <a href="https://www.incometax.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">PAN Card</span>
+                </a>
+
+                <a href="https://samagra.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">Samagra Portal</span>
+                </a>
+
+                <a href="https://mpbhulekh.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">MP Bhulekh</span>
+                </a>
+
+                <a href="https://mponline.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">MP Online Portal</span>
+                </a>
+
+                <a href="https://esb.mp.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center border border-gray-100 dark:border-gray-700 group">
+                    <div class="w-12 h-12 mx-auto bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="text-xs font-bold block text-gray-700 dark:text-gray-200">MP ESB (Vyapam)</span>
+                </a>
+
             </div>
-            <div class="feature-box">
-                <h4>🛡️ Trusted Center</h4>
-                <p>Aapke data ki 100% security</p>
+        </section>
+
+        <!-- SARKARI RESULT SECTION -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white border-b-2 border-amber-500 pb-1 inline-block">
+                <i class="fa-solid fa-square-poll-vertical text-amber-500 mr-2"></i> Sarkari Result & Latest Updates
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Latest Jobs -->
+                <div class="border dark:border-gray-700 rounded-lg overflow-hidden">
+                    <div class="bg-primary text-white p-3 font-bold text-center text-sm">
+                        <i class="fa-solid fa-briefcase mr-1"></i> Latest Jobs
+                    </div>
+                    <ul class="p-3 text-xs space-y-2 text-gray-700 dark:text-gray-300 divide-y dark:divide-gray-700">
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">MP Police Constable Online Form</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">SSC GD Constable Recruitment</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">Railway RRB Technician Vacancy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Admit Card -->
+                <div class="border dark:border-gray-700 rounded-lg overflow-hidden">
+                    <div class="bg-amber-600 text-white p-3 font-bold text-center text-sm">
+                        <i class="fa-solid fa-ticket mr-1"></i> Admit Card
+                    </div>
+                    <ul class="p-3 text-xs space-y-2 text-gray-700 dark:text-gray-300 divide-y dark:divide-gray-700">
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">MP Gramin Bank Admit Card</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">SSC CGL Tier I Hall Ticket</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">MP Task Teacher Exam City Details</a></li>
+                    </ul>
+                </div>
+
+                <!-- Results -->
+                <div class="border dark:border-gray-700 rounded-lg overflow-hidden">
+                    <div class="bg-emerald-600 text-white p-3 font-bold text-center text-sm">
+                        <i class="fa-solid fa-award mr-1"></i> Results
+                    </div>
+                    <ul class="p-3 text-xs space-y-2 text-gray-700 dark:text-gray-300 divide-y dark:divide-gray-700">
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">MP Board 10th / 12th Result</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">MP Patwari Selection List</a></li>
+                        <li class="pt-2"><a href="#" class="hover:text-primary dark:hover:text-amber-400">SSC MTS Final Result</a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="feature-box">
-                <h4>💰 Affordable Charges</h4>
-                <p>Market ke sabse sahi aur uchit rate</p>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH OWNER DETAILS -->
+    <footer class="bg-gray-900 text-gray-300 pt-10 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="text-white text-lg font-bold mb-3">Kanha MP Online</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Aapka apna digital service center. Yahan sabhi prakar ke sarkari form, admit card, result, samagra KYC, PAN card, aur online karya kiye jaate hain.
+                </p>
             </div>
-            <div class="feature-box">
-                <h4>🤝 Friendly Support</h4>
-                <p>Har step par poori jankari aur help</p>
+            <div>
+                <h3 class="text-white text-lg font-bold mb-3">Contact Information</h3>
+                <ul class="text-xs space-y-2">
+                    <li><i class="fa-solid fa-user text-amber-400 mr-2"></i> Owner: <strong>Jaggu Prasad Soni</strong></li>
+                    <li><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> Near Baram Baba Prangan, Chakethi Anuppur (M.P.)</li>
+                    <li><i class="fa-solid fa-phone text-amber-400 mr-2"></i> +91 8989447014, 7489538884</li>
+                    <li><i class="fa-solid fa-envelope text-amber-400 mr-2"></i> jpsonionline@gmail.com</li>
+                </ul>
             </div>
+            <div>
+                <h3 class="text-white text-lg font-bold mb-3">Quick Navigation</h3>
+                <ul class="text-xs space-y-2">
+                    <li><a href="#" onclick="toggleModal('loginModal')" class="hover:text-amber-400"><i class="fa-solid fa-lock mr-1"></i> Owner Login Portal</a></li>
+                    <li><a href="https://samagra.gov.in" target="_blank" class="hover:text-amber-400"><i class="fa-solid fa-angle-right mr-1"></i> Samagra Portal</a></li>
+                    <li><a href="https://mpbhulekh.gov.in" target="_blank" class="hover:text-amber-400"><i class="fa-solid fa-angle-right mr-1"></i> MP Bhulekh (Khasra)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-gray-500 pt-4 border-t border-gray-800">
+            © 2026 Kanha MP Online & CSC Center. All Rights Reserved. Designed for Jaggu Prasad Soni.
+        </div>
+    </footer>
+
+    <!-- OWNER LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 w-full max-w-md rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700 relative">
+            <button onclick="toggleModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-primary text-amber-400 rounded-full flex items-center justify-center text-2xl mx-auto shadow-md mb-2">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Owner Portal Login</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Kanha MP Online Administrative Panel</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">User ID</label>
+                    <input type="text" id="username" required placeholder="Enter User ID" class="w-full px-3 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">Password</label>
+                    <input type="password" id="password" required placeholder="Enter Password" class="w-full px-3 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <p id="loginError" class="text-xs text-red-500 font-semibold hidden text-center">Invalid User ID or Password!</p>
+                <button type="submit" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-2.5 rounded-lg shadow transition">
+                    Login to Portal
+                </button>
+            </form>
         </div>
     </div>
 
-    <div class="footer">
-        <h2>📍 Contact Us</h2>
-        <p><strong>Kanha MP Online & CSC Service Center</strong></p>
-        <p>👤 Owner: Jaggu Prasad Soni</p>
-        <p>📞 Mobile: 8989447014 | 7489538884</p>
-        <p>📍 Address: Near Baram Baba Prangan, Chakethi, District Anuppur (M.P.)</p>
-        <p style="margin-top: 20px; font-size: 14px; color: #aaa;">© 2026 Kanha Digital. All Rights Reserved.</p>
+    <!-- OWNER DASHBOARD & DIGITAL ID MODAL (Appears after successful login) -->
+    <div id="adminModal" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden z-50 overflow-y-auto p-4">
+        <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 my-8 border border-amber-500/30">
+            <div class="flex justify-between items-center border-b dark:border-gray-700 pb-3 mb-4">
+                <h3 class="text-lg font-bold text-primary dark:text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-gauge-high"></i> Admin Dashboard Panel
+                </h3>
+                <button onclick="toggleModal('adminModal')" class="text-gray-400 hover:text-red-500 font-bold text-sm">
+                    Close <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- OWNER DIGITAL ID CARD -->
+            <div class="bg-gradient-to-r from-blue-900 via-primary to-blue-950 text-white p-5 rounded-xl shadow-lg mb-6 border-2 border-amber-400/50 relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-24 h-24 rounded-full bg-amber-400 p-1 flex-shrink-0 shadow-md">
+                        <div class="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-3xl font-bold text-amber-400">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-left space-y-1">
+                        <span class="bg-amber-400 text-blue-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Verified Portal Owner</span>
+                        <h2 class="text-2xl font-black text-white">Jaggu Prasad Soni</h2>
+                        <p class="text-xs text-amber-300 font-medium">Kanha MP Online & CSC Center</p>
+                        <div class="text-xs text-gray-200 space-y-0.5 pt-1">
+                            <p><i class="fa-solid fa-phone text-amber-400 mr-1"></i> +91 8989447014, 7489538884</p>
+                            <p><i class="fa-solid fa-envelope text-amber-400 mr-1"></i> jpsonionline@gmail.com</p>
+                            <p><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Near Baram Baba Prangan, Chakethi Anuppur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK EDIT TOOLS -->
+            <div class="space-y-4">
+                <h4 class="font-bold text-sm text-gray-800 dark:text-white border-b pb-1 dark:border-gray-700">Update Notice Board Text</h4>
+                <div class="flex gap-2">
+                    <input type="text" id="newNoticeInput" placeholder="Enter new announcement..." class="flex-grow px-3 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 text-xs">
+                    <button onclick="addNotice()" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg text-xs">
+                        Add Notice
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- Floating Buttons (Screen pe hamesha dikhenge) -->
-    <a href="tel:8989447014" class="floating-call">📞 Call Now</a>
-    <a href="https://wa.me/918989447014?text=Namaste%20Jaggu%20Ji,%20mujhe%20Kanha%20MP%20Online%20se%20jankari%20chahiye." class="floating-wa" target="_blank">🟢 WhatsApp Now</a>
-<div style="text-align:center; padding:20px;">
-    <img src="WhatsApp%20Image%202026-07-28%20at%2020.10.52.jpeg"
-         alt="Kanha MP Online & CSC Center"
-         style="width:100%;max-width:1200px;border-radius:12px;">
-</div>
-<!-- ===== Premium Important Updates Popup ===== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
 
-<style>
-#newsPopup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.65);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999999;
-font-family:Arial,sans-serif;
-}
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if(document.documentElement.classList.contains('dark')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
 
-.popup-box{
-width:95%;
-max-width:600px;
-background:#fff;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 10px 40px rgba(0,0,0,.4);
-animation:popup .4s ease;
-}
+        // Toggle Modal Helper
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
 
-@keyframes popup{
-from{transform:scale(.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
+        // Login Authentication Process
+        function handleLogin(event) {
+            event.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('loginError');
 
-.popup-header{
-background:#0b5ed7;
-color:#fff;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+            // Exact Login Credentials
+            if (user === "Kanha Jii" && pass === "Jpsoni@123") {
+                errorMsg.classList.add('hidden');
+                toggleModal('loginModal');
+                toggleModal('adminModal');
+                document.getElementById('loginForm').reset();
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
 
-.popup-header h2{
-margin:0;
-font-size:24px;
-}
-
-.close{
-font-size:30px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.popup-body{
-padding:20px;
-max-height:420px;
-overflow-y:auto;
-}
-
-.notice{
-background:#f8f9fa;
-border-left:6px solid #0b5ed7;
-padding:12px;
-margin-bottom:15px;
-border-radius:8px;
-}
-
-.notice h3{
-margin:0;
-font-size:18px;
-color:#0b5ed7;
-}
-
-.notice p{
-margin:8px 0;
-font-size:15px;
-}
-
-.lastdate{
-color:red;
-font-weight:bold;
-}
-
-.new{
-background:red;
-color:white;
-padding:3px 8px;
-border-radius:20px;
-font-size:11px;
-margin-left:8px;
-}
-
-.popup-footer{
-padding:15px;
-text-align:center;
-background:#f2f2f2;
-}
-
-.popup-footer a{
-background:#198754;
-color:white;
-padding:10px 18px;
-text-decoration:none;
-border-radius:6px;
-font-weight:bold;
-}
-</style>
-
-<div id="newsPopup">
-
-<div class="popup-box">
-
-<div class="popup-header">
-<h2>📢 Latest Updates</h2>
-<span class="close" onclick="document.getElementById('newsPopup').style.display='none'">&times;</span>
-</div>
-
-<div class="popup-body">
-
-<div class="notice">
-<h3>📚 Jawahar Navodaya Vidyalaya Class 6 Admission 2027
-<span class="new">NEW</span>
-</h3>
-<p>✅ Online Application Started</p>
-<p class="lastdate">🗓 Last Date : 31/07/2026</p>
-</div>
-
-<div class="notice">
-<h3>🎓 PM YASASVI YOJANA 2026
-<span class="new">NEW</span>
-</h3>
-<p>For Eligible Students (Class 9 & 12 as per your notice)</p>
-<p class="lastdate">🗓 Last Date : 31/07/2026</p>
-</div>
-
-</div>
-
-<div class="popup-footer">
-
-<a href="https://wa.me/918989447014" target="_blank">
-📞 Contact Kanha MP Online
-</a>
-
-</div>
-
-</div>
-
-</div>
+        // Add Notice Function
+        function addNotice() {
+            const input = document.getElementById('newNoticeInput');
+            const text = input.value.trim();
+            if(text) {
+                const list = document.getElementById('noticeBoardList');
+                const li = document.createElement('li');
+                li.className = "p-2 bg-amber-50 dark:bg-gray-700 rounded border-l-4 border-amber-500";
+                li.innerHTML = "📌 " + text;
+                list.prepend(li);
+                input.value = "";
+                alert("Notice Updated Successfully!");
+            }
+        }
+    </script>
 </body>
 </html>
