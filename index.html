@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="hi" class="scroll-smooth">
-<head><meta name="google-site-verification" content="7zP2VahZGhu8Wd7fk2h6fDha9adulBbKxALL9hw50C8" />
+<head>
+    <meta name="google-site-verification" content="7zP2VahZGhu8Wd7fk2h6fDha9adulBbKxALL9hw50C8" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanha MP Online & CSC Service Center | Citizen Portal</title>
@@ -36,12 +37,16 @@
             </div>
             
             <div class="flex items-center space-x-3">
-                <button id="themeToggle" class="p-2 rounded-full bg-blue-900 hover:bg-blue-800 text-amber-300 transition" title="Toggle Theme">
+                <button id="themeToggle" onclick="toggleTheme()" class="p-2 rounded-full bg-blue-900 hover:bg-blue-800 text-amber-300 transition" title="Toggle Theme">
                     <i class="fa-solid fa-moon text-lg" id="themeIcon"></i>
                 </button>
-                <button onclick="toggleModal('loginModal')" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm transition">
+                <button id="loginNavBtn" onclick="toggleModal('loginModal')" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm transition">
                     <i class="fa-solid fa-user-shield"></i>
                     <span>Owner Login</span>
+                </button>
+                <button id="logoutNavBtn" onclick="logout()" class="hidden bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg shadow items-center gap-2 text-sm transition">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
                 </button>
             </div>
         </div>
@@ -55,39 +60,433 @@
                 <span>Live Market:</span>
             </div>
             <div class="flex items-center gap-3 sm:gap-6 font-semibold overflow-x-auto whitespace-nowrap py-0.5">
-                <!-- Nifty 50 -->
                 <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
                     <span class="text-gray-300">NIFTY 50:</span>
                     <span class="text-emerald-400 font-bold">24,850.20</span>
                     <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.45%</span>
                 </div>
-                <!-- Sensex -->
                 <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
                     <span class="text-gray-300">SENSEX:</span>
                     <span class="text-emerald-400 font-bold">81,320.50</span>
                     <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.38%</span>
                 </div>
-                <!-- BTC/USD -->
-                <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
-                    <span class="text-gray-300">BTC/USD:</span>
-                    <span class="text-emerald-400 font-bold">$67,450.00</span>
-                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+1.20%</span>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- TICKER NEWS -->
-    <div class="bg-amber-500 text-blue-950 font-semibold py-2 px-4 flex items-center shadow-inner">
-        <span class="bg-red-600 text-white text-xs uppercase px-2 py-1 rounded font-bold mr-3 animate-pulse whitespace-nowrap">Latest Updates</span>
-        <marquee class="text-sm font-medium">
-            Welcome to Kanha MP Online & CSC Center Chakethi Anuppur | Aadhaar, PAN, Samagra, Caste Certificate, Stock Market Updates & All Online Services Available Here!
-        </marquee>
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+        <!-- PUBLIC DISPLAY SECTION -->
+        <div id="publicView" class="space-y-8">
+            <!-- Owner Public Card -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center gap-6">
+                <img id="displayOwnerPhoto" src="https://via.placeholder.com/150" alt="Owner Photo" class="w-28 h-28 rounded-full object-cover border-4 border-amber-500 shadow">
+                <div>
+                    <h2 id="displayOwnerName" class="text-2xl font-bold text-blue-900 dark:text-blue-400">Kanha MP Online Center</h2>
+                    <p id="displayOwnerEmail" class="text-sm text-gray-500 dark:text-gray-400"><i class="fa-solid fa-envelope mr-2"></i>contact@kanhaponline.com</p>
+                    <p class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1"><i class="fa-solid fa-circle-check mr-1"></i> Verified CSC & MP Online Kiosk Owner</p>
+                </div>
+            </div>
+
+            <!-- Important News Public Alert -->
+            <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm">
+                <h3 class="text-lg font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-2">
+                    <i class="fa-solid fa-bullhorn animate-bounce"></i> Important News & Announcements
+                </h3>
+                <ul id="publicNewsList" class="list-disc list-inside space-y-1 text-sm font-medium">
+                    <!-- Dynamic Public News -->
+                </ul>
+            </div>
+
+            <!-- Portal Links (Jobs, Admit Card, Result) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Latest Jobs -->
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-blue-600">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
+                        <i class="fa-solid fa-briefcase"></i> Latest Jobs
+                    </h3>
+                    <div id="publicJobsList" class="space-y-2 text-sm"></div>
+                </div>
+
+                <!-- Admit Cards -->
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
+                        <i class="fa-solid fa-id-card"></i> Admit Card
+                    </h3>
+                    <div id="publicAdmitList" class="space-y-2 text-sm"></div>
+                </div>
+
+                <!-- Results -->
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-emerald-600">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
+                        <i class="fa-solid fa-square-poll-vertical"></i> Results
+                    </h3>
+                    <div id="publicResultList" class="space-y-2 text-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OWNER DASHBOARD SECTION (Visible after Login) -->
+        <div id="adminDashboard" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div class="bg-blue-900 text-white p-4 flex justify-between items-center border-b border-blue-800">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-gauge-high text-amber-400"></i> Owner Control Panel
+                </h2>
+                <span class="text-xs bg-amber-500 text-blue-950 font-black px-2.5 py-1 rounded">ADMIN ACTIVE</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 min-h-[500px]">
+                <!-- Sidebar Tabs -->
+                <div class="bg-gray-50 dark:bg-gray-900/50 p-4 border-r border-gray-200 dark:border-gray-700 space-y-2">
+                    <button onclick="switchAdminTab('tab-profile')" id="btn-tab-profile" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 bg-blue-600 text-white shadow">
+                        <i class="fa-solid fa-user-gear"></i> Owner Profile
+                    </button>
+                    <button onclick="switchAdminTab('tab-news')" id="btn-tab-news" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+                        <i class="fa-solid fa-newspaper"></i> Important News
+                    </button>
+                    <button onclick="switchAdminTab('tab-portal')" id="btn-tab-portal" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+                        <i class="fa-solid fa-link"></i> Jobs / Admit Card / Result
+                    </button>
+                </div>
+
+                <!-- Tab Content Panels -->
+                <div class="md:col-span-3 p-6">
+                    
+                    <!-- 1. PROFILE TAB -->
+                    <div id="tab-profile" class="admin-tab-content space-y-6">
+                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Profile Settings</h3>
+                        <div class="flex flex-col sm:flex-row items-center gap-6">
+                            <img id="adminProfilePreview" src="https://via.placeholder.com/150" alt="Preview" class="w-28 h-28 rounded-full object-cover border-4 border-blue-600 shadow">
+                            <div class="space-y-2 w-full">
+                                <label class="block text-sm font-semibold">Change Owner Photo:</label>
+                                <input type="file" id="ownerPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-200">
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold mb-1">Owner / Center Name:</label>
+                                <input type="text" id="ownerNameInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-1">Email Address:</label>
+                                <input type="email" id="ownerEmailInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                            </div>
+                            <button onclick="saveProfile()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow flex items-center gap-2">
+                                <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. IMPORTANT NEWS TAB -->
+                    <div id="tab-news" class="admin-tab-content hidden space-y-6">
+                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Important News</h3>
+                        <div class="flex gap-3">
+                            <input type="text" id="newsInput" placeholder="Enter important news headline..." class="flex-1 p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                            <button onclick="addNews()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow whitespace-nowrap">
+                                <i class="fa-solid fa-plus mr-1"></i> Add News
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
+                                <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-3">News Headline</th>
+                                        <th class="p-3 w-32">Date</th>
+                                        <th class="p-3 w-24 text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminNewsTable" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <!-- Dynamic Admin News Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 3. PORTAL LINKS TAB -->
+                    <div id="tab-portal" class="admin-tab-content hidden space-y-6">
+                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Portal Links</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <select id="portalCategory" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm">
+                                <option value="job">Latest Job</option>
+                                <option value="admit">Admit Card</option>
+                                <option value="result">Result</option>
+                            </select>
+                            <input type="text" id="portalTitle" placeholder="Title (e.g. SSC CGL 2026)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                            <input type="url" id="portalUrl" placeholder="Direct URL (https://...)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                        </div>
+                        <button onclick="addPortalLink()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow">
+                            <i class="fa-solid fa-upload mr-1"></i> Upload Link
+                        </button>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
+                                <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-3">Category</th>
+                                        <th class="p-3">Title</th>
+                                        <th class="p-3">Direct Link</th>
+                                        <th class="p-3 text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminPortalTable" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <!-- Dynamic Admin Portal Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- OWNER LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="text-lg font-bold text-blue-900 dark:text-blue-400 flex items-center gap-2">
+                    <i class="fa-solid fa-lock"></i> Owner Portal Authentication
+                </h3>
+                <button onclick="toggleModal('loginModal')" class="text-gray-400 hover:text-gray-600 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Username:</label>
+                    <input type="text" id="loginUsername" required placeholder="Enter username" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Password:</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter password" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold py-2.5 rounded-lg shadow text-sm transition">
+                    Login to Dashboard
+                </button>
+            </form>
+        </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA STORAGE INITIALIZATION
+        let siteData = JSON.parse(localStorage.getItem('kanhaPortalData')) || {
+            owner: {
+                name: "Kanha MP Online Center",
+                email: "contact@kanhaponline.com",
+                photo: "https://via.placeholder.com/150"
+            },
+            news: [
+                { id: 1, text: "MP Police Constable Online Form Active Now!", date: "04/08/2026" }
+            ],
+            portalLinks: [
+                { id: 1, category: "job", title: "SSC CGL Recruitment 2026", url: "https://ssc.gov.in" },
+                { id: 2, category: "admit", title: "MPPEB Primary Teacher Admit Card", url: "https://esb.mp.gov.in" },
+                { id: 3, category: "result", title: "MP Board 10th/12th Supplementary Result", url: "https://mpbse.nic.in" }
+            ]
+        };
 
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Modal Toggle
+        function toggleModal(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+
+        // Save State
+        function saveData() {
+            localStorage.setItem('kanhaPortalData', JSON.stringify(siteData));
+            renderAll();
+        }
+
+        // Owner Login Logic with Custom Credentials
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('loginUsername').value.trim();
+            const pass = document.getElementById('loginPassword').value.trim();
+            
+            // Set Credentials
+            if (user === 'Kanhajii' && pass === 'Jpsoni@123') {
+                toggleModal('loginModal');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                document.getElementById('loginNavBtn').classList.add('hidden');
+                document.getElementById('logoutNavBtn').classList.remove('hidden');
+                document.getElementById('logoutNavBtn').classList.add('flex');
+                
+                // Clear fields
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                
+                alert('Welcome, Kanhajii! Owner Login Successful.');
+            } else {
+                alert('Invalid Username or Password!');
+            }
+        }
+
+        function logout() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('loginNavBtn').classList.remove('hidden');
+            document.getElementById('logoutNavBtn').classList.add('hidden');
+            document.getElementById('logoutNavBtn').classList.remove('flex');
+        }
+
+        // Tab Switching Logic
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                btn.classList.add('text-gray-600', 'dark:text-gray-300');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow');
+            activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+        }
+
+        // Profile Update Logic
+        function handlePhotoUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    siteData.owner.photo = evt.target.result;
+                    document.getElementById('adminProfilePreview').src = evt.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveProfile() {
+            siteData.owner.name = document.getElementById('ownerNameInput').value;
+            siteData.owner.email = document.getElementById('ownerEmailInput').value;
+            saveData();
+            alert('Profile Saved Successfully!');
+        }
+
+        // Add News Logic
+        function addNews() {
+            const input = document.getElementById('newsInput');
+            if (!input.value.trim()) return alert('Enter news text!');
+            
+            siteData.news.push({
+                id: Date.now(),
+                text: input.value.trim(),
+                date: new Date().toLocaleDateString('en-IN')
+            });
+            input.value = '';
+            saveData();
+        }
+
+        function deleteNews(id) {
+            if (confirm('Kya aap is news ko delete karna chahte hain?')) {
+                siteData.news = siteData.news.filter(n => n.id !== id);
+                saveData();
+            }
+        }
+
+        // Portal Link Add Logic
+        function addPortalLink() {
+            const cat = document.getElementById('portalCategory').value;
+            const title = document.getElementById('portalTitle').value.trim();
+            const url = document.getElementById('portalUrl').value.trim();
+
+            if (!title || !url) return alert('Title aur Direct Link dono bharein!');
+
+            siteData.portalLinks.push({
+                id: Date.now(),
+                category: cat,
+                title: title,
+                url: url
+            });
+
+            document.getElementById('portalTitle').value = '';
+            document.getElementById('portalUrl').value = '';
+            saveData();
+        }
+
+        function deletePortalLink(id) {
+            if (confirm('Kya aap is link ko delete karna chahte hain?')) {
+                siteData.portalLinks = siteData.portalLinks.filter(p => p.id !== id);
+                saveData();
+            }
+        }
+
+        // Render UI
+        function renderAll() {
+            // Render Profile
+            document.getElementById('displayOwnerPhoto').src = siteData.owner.photo;
+            document.getElementById('adminProfilePreview').src = siteData.owner.photo;
+            document.getElementById('displayOwnerName').innerText = siteData.owner.name;
+            document.getElementById('ownerNameInput').value = siteData.owner.name;
+            document.getElementById('displayOwnerEmail').innerHTML = `<i class="fa-solid fa-envelope mr-2"></i>${siteData.owner.email}`;
+            document.getElementById('ownerEmailInput').value = siteData.owner.email;
+
+            // Render News
+            const publicNews = document.getElementById('publicNewsList');
+            const adminNews = document.getElementById('adminNewsTable');
+            publicNews.innerHTML = '';
+            adminNews.innerHTML = '';
+
+            siteData.news.forEach(item => {
+                publicNews.innerHTML += `<li>${item.text}</li>`;
+                adminNews.innerHTML += `
+                    <tr>
+                        <td class="p-3">${item.text}</td>
+                        <td class="p-3 text-xs text-gray-500">${item.date}</td>
+                        <td class="p-3 text-center">
+                            <button onclick="deleteNews(${item.id})" class="text-red-600 hover:text-red-800 font-bold text-xs"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            // Render Portal Links
+            const publicJobs = document.getElementById('publicJobsList');
+            const publicAdmit = document.getElementById('publicAdmitList');
+            const publicResult = document.getElementById('publicResultList');
+            const adminPortalTable = document.getElementById('adminPortalTable');
+
+            publicJobs.innerHTML = '';
+            publicAdmit.innerHTML = '';
+            publicResult.innerHTML = '';
+            adminPortalTable.innerHTML = '';
+
+            siteData.portalLinks.forEach(item => {
+                const linkHTML = `
+                    <a href="${item.url}" target="_blank" class="flex items-center justify-between p-2 rounded bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                        <span>${item.title}</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-blue-500"></i>
+                    </a>
+                `;
+
+                if (item.category === 'job') publicJobs.innerHTML += linkHTML;
+                if (item.category === 'admit') publicAdmit.innerHTML += linkHTML;
+                if (item.category === 'result') publicResult.innerHTML += linkHTML;
+
+                adminPortalTable.innerHTML += `
+                    <tr>
+                        <td class="p-3 uppercase font-bold text-xs">${item.category}</td>
+                        <td class="p-3">${item.title}</td>
+                        <td class="p-3"><a href="${item.url}" target="_blank" class="text-blue-600 hover:underline">Open Link ↗</a></td>
+                        <td class="p-3 text-center">
+                            <button onclick="deletePortalLink(${item.id})" class="text-red-600 hover:text-red-800 font-bold text-xs"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Initialize Page
+        renderAll();
+    </script>
+</body>
+</html>
         <!-- NOTICE BOARD & SHOP INFO BANNER -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Notice Board -->
