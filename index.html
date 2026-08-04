@@ -17,504 +17,467 @@
                     colors: {
                         primary: '#1e3a8a',
                         secondary: '#d97706',
+                        footerBg: '#0b1329',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300 min-h-screen flex flex-col justify-between">
 
-    <!-- TOP HEADER -->
-    <header class="bg-primary text-white shadow-md sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-amber-500 text-primary font-black px-3 py-1 rounded-lg text-xl shadow">KMP</div>
-                <div>
-                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">Kanha MP Online</h1>
-                    <p class="text-xs text-amber-300">CSC Service Center & Citizen Digital Portal</p>
+    <div>
+        <!-- TOP HEADER -->
+        <header class="bg-primary text-white shadow-md sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-amber-500 text-primary font-black px-3 py-1 rounded-lg text-xl shadow">KMP</div>
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-bold tracking-wide">Kanha MP Online</h1>
+                        <p class="text-xs text-amber-300">CSC Service Center & Citizen Digital Portal</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggle" onclick="toggleTheme()" class="p-2 rounded-full bg-blue-900 hover:bg-blue-800 text-amber-300 transition" title="Toggle Theme">
+                        <i class="fa-solid fa-moon text-lg" id="themeIcon"></i>
+                    </button>
+                    <button id="loginNavBtn" onclick="toggleModal('loginModal')" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Owner Login</span>
+                    </button>
+                    <button id="logoutNavBtn" onclick="logout()" class="hidden bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg shadow items-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
-            
-            <div class="flex items-center space-x-3">
-                <button id="themeToggle" onclick="toggleTheme()" class="p-2 rounded-full bg-blue-900 hover:bg-blue-800 text-amber-300 transition" title="Toggle Theme">
-                    <i class="fa-solid fa-moon text-lg" id="themeIcon"></i>
-                </button>
-                <button id="loginNavBtn" onclick="toggleModal('loginModal')" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm transition">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Owner Login</span>
-                </button>
-                <button id="logoutNavBtn" onclick="logout()" class="hidden bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg shadow items-center gap-2 text-sm transition">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
-                </button>
+        </header>
+
+        <!-- LIVE MARKET TICKER STRIP -->
+        <div class="bg-slate-900 text-white py-2 px-4 shadow-md border-b border-slate-800">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-xs gap-3">
+                <div class="flex items-center gap-1.5 text-amber-400 font-bold">
+                    <i class="fa-solid fa-chart-line animate-pulse"></i>
+                    <span>Live Market:</span>
+                </div>
+                <div class="flex items-center gap-3 sm:gap-6 font-semibold overflow-x-auto whitespace-nowrap py-0.5">
+                    <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
+                        <span class="text-gray-300">NIFTY 50:</span>
+                        <span class="text-emerald-400 font-bold">24,850.20</span>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.45%</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
+                        <span class="text-gray-300">SENSEX:</span>
+                        <span class="text-emerald-400 font-bold">81,320.50</span>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.38%</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- LIVE MARKET TICKER STRIP -->
-    <div class="bg-slate-900 text-white py-2 px-4 shadow-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-xs gap-3">
-            <div class="flex items-center gap-1.5 text-amber-400 font-bold">
-                <i class="fa-solid fa-chart-line animate-pulse"></i>
-                <span>Live Market:</span>
-            </div>
-            <div class="flex items-center gap-3 sm:gap-6 font-semibold overflow-x-auto whitespace-nowrap py-0.5">
-                <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
-                    <span class="text-gray-300">NIFTY 50:</span>
-                    <span class="text-emerald-400 font-bold">24,850.20</span>
-                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.45%</span>
+        <!-- MAIN CONTENT -->
+        <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+            <!-- PUBLIC DISPLAY SECTION -->
+            <div id="publicView" class="space-y-8">
+                
+                <!-- Owner Public Card & Notice -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Notice Board -->
+                    <div class="md:col-span-2 bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-blue-900 space-y-3">
+                        <h3 class="text-lg font-bold text-blue-900 dark:text-blue-400 flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-list"></i> Notice Board / Zaroori Soochne
+                        </h3>
+                        <div class="bg-blue-50 dark:bg-gray-700/50 p-3 rounded-lg text-sm text-gray-700 dark:text-gray-200 space-y-2">
+                            <p>📌 <b>MP Online Portal:</b> Sabhi Prakar Ke Govt Form, Admit Card Aur Result Yahan Se Download Karein.</p>
+                            <p>📌 <b>Samagra ID & Aadhaar Link:</b> E-KYC Ki Suvidha Kendra Par Uplabdha Hai.</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Banner Card -->
+                    <div class="bg-blue-900 text-white p-5 rounded-xl shadow-md space-y-2 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-amber-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase">Authorized Center</span>
+                            <h3 class="text-xl font-bold text-amber-300 mt-2" id="displayOwnerName">Kanha MP Online</h3>
+                            <p class="text-xs text-gray-200 mt-1"><i class="fa-solid fa-user mr-1"></i> Owner: <b>Jaggu Prasad Soni</b></p>
+                            <p class="text-xs text-gray-200"><i class="fa-solid fa-location-dot mr-1"></i> Near Baram Baba Prangan, Chakethi Anuppur</p>
+                        </div>
+                        <div class="flex gap-2 pt-3 border-t border-blue-800">
+                            <a href="tel:8989447014" class="flex-1 bg-amber-500 hover:bg-amber-600 text-blue-950 text-center font-bold text-xs py-1.5 rounded transition"><i class="fa-solid fa-phone mr-1"></i> Call</a>
+                            <a href="https://wa.me/918989447014" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white text-center font-bold text-xs py-1.5 rounded transition"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700 shadow-sm">
-                    <span class="text-gray-300">SENSEX:</span>
-                    <span class="text-emerald-400 font-bold">81,320.50</span>
-                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded flex items-center"><i class="fa-solid fa-caret-up mr-0.5"></i>+0.38%</span>
+
+                <!-- Important News Public Alert -->
+                <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-bullhorn animate-bounce"></i> Important News & Announcements
+                    </h3>
+                    <ul id="publicNewsList" class="list-disc list-inside space-y-1 text-sm font-medium">
+                        <!-- Dynamic Public News -->
+                    </ul>
+                </div>
+
+                <!-- Portal Links (Jobs, Admit Card, Result) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Latest Jobs -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-blue-600">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
+                            <i class="fa-solid fa-briefcase"></i> Latest Jobs
+                        </h3>
+                        <div id="publicJobsList" class="space-y-2 text-sm"></div>
+                    </div>
+
+                    <!-- Admit Cards -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-amber-500">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
+                            <i class="fa-solid fa-id-card"></i> Admit Card
+                        </h3>
+                        <div id="publicAdmitList" class="space-y-2 text-sm"></div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-emerald-600">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
+                            <i class="fa-solid fa-square-poll-vertical"></i> Results
+                        </h3>
+                        <div id="publicResultList" class="space-y-2 text-sm"></div>
+                    </div>
+                </div>
+
+                <!-- EXACT POPULAR GOVERNMENT SERVICES (22 SERVICES) -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 pb-2 inline-block">
+                        Popular Government Services
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        <a href="https://uidai.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-fingerprint"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Aadhaar Portal</span>
+                        </a>
+                        <a href="https://incometax.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-address-card"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">PAN Card</span>
+                        </a>
+                        <a href="https://samagra.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-users"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Samagra Portal</span>
+                        </a>
+                        <a href="https://mpbhulekh.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP Bhulekh</span>
+                        </a>
+                        <a href="https://mponline.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-laptop-code"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP Online Portal</span>
+                        </a>
+                        <a href="https://esb.mp.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center text-teal-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP ESB (Vyapam)</span>
+                        </a>
+                        <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-house-user"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Domicile Certificate</span>
+                        </a>
+                        <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-certificate"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Caste Certificate</span>
+                        </a>
+                        <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Income Certificate</span>
+                        </a>
+                        <a href="https://voters.eci.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-check-to-slot"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Voter Card</span>
+                        </a>
+                        <a href="https://scholarshipportal.mp.nic.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-user-graduate"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Scholarship Form</span>
+                        </a>
+                        <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-file-lines"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Resume / CV</span>
+                        </a>
+                        <a href="https://parivahan.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-id-badge"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Driving License</span>
+                        </a>
+                        <a href="https://abc.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-id-card-clip"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">APAAR ID Card</span>
+                        </a>
+                        <a href="https://ayushmanup.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Aayushman Card</span>
+                        </a>
+                        <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-pink-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-image"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Passport Size Photo</span>
+                        </a>
+                        <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-print"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Photocopy / Print / Scan</span>
+                        </a>
+                        <a href="https://mponline.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-bolt"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Electricity Bill</span>
+                        </a>
+                        <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center text-orange-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-keyboard"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Typing Work</span>
+                        </a>
+                        <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-lime-50 dark:bg-lime-900/30 flex items-center justify-center text-lime-500 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-copy"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Lamination</span>
+                        </a>
+                        <a href="https://sambal.mp.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-hands-holding-child"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Sambal Card</span>
+                        </a>
+                        <a href="https://eshram.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
+                            <div class="w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center text-teal-400 text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-person-digging"></i></div>
+                            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Labor Card</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MARKET NEWS SECTION -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl border border-indigo-200 dark:border-indigo-900 p-6 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b pb-3 border-gray-100 dark:border-gray-700">
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                            <span class="text-indigo-600 font-black">||</span> Market News (शेयर बाजार समाचार)
+                        </h3>
+                        <span class="bg-indigo-100 text-indigo-700 font-bold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">LIVE NEWS</span>
+                    </div>
+
+                    <div class="space-y-4 text-sm divide-y divide-gray-100 dark:divide-gray-700">
+                        <div class="pt-2">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <span class="text-teal-500 font-black">||</span> Nifty 50 touches new all-time high driven by Banking & IT stocks rally.
+                            </p>
+                            <p class="text-xs text-gray-400 ml-5 mt-0.5">Today, 11:30 AM</p>
+                        </div>
+                        <div class="pt-3">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <span class="text-teal-500 font-black">||</span> RBI Monetary Policy Update: Key benchmark repo rates remain unchanged.
+                            </p>
+                            <p class="text-xs text-gray-400 ml-5 mt-0.5">Yesterday</p>
+                        </div>
+                        <div class="pt-3">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <span class="text-amber-500 font-black">||</span> BTC/USD surges past $67,000 level amid strong global market buying.
+                            </p>
+                            <p class="text-xs text-gray-400 ml-5 mt-0.5">2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IPO UPDATES SECTION -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b pb-3 border-gray-100 dark:border-gray-700">
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                            <span class="text-amber-500 font-black">||</span> IPO Updates (नए IPO व GMP)
+                        </h3>
+                        <span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">IPO ALERT</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40 rounded-xl p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                            <div>
+                                <span class="bg-emerald-600 text-white font-extrabold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">OPEN NOW</span>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100 mt-1">Mainboard Tech IPO</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Price Band: ₹240 - ₹252 | Lot Size: 60 Shares</p>
+                            </div>
+                            <div>
+                                <span class="bg-emerald-100 text-emerald-700 font-black text-xs px-3 py-1.5 rounded-lg border border-emerald-200">GMP: +45%</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                            <div>
+                                <span class="bg-blue-600 text-white font-extrabold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">UPCOMING</span>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100 mt-1">Green Energy Infra IPO</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Opening Date: Next Week | Premium Expected</p>
+                            </div>
+                            <div>
+                                <span class="bg-gray-200 text-gray-600 font-bold text-xs px-3 py-1.5 rounded-lg">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- OWNER DASHBOARD SECTION -->
+            <div id="adminDashboard" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div class="bg-blue-900 text-white p-4 flex justify-between items-center border-b border-blue-800">
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-amber-400"></i> Owner Control Panel
+                    </h2>
+                    <span class="text-xs bg-amber-500 text-blue-950 font-black px-2.5 py-1 rounded">ADMIN ACTIVE</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 min-h-[500px]">
+                    <div class="bg-gray-50 dark:bg-gray-900/50 p-4 border-r border-gray-200 dark:border-gray-700 space-y-2">
+                        <button onclick="switchAdminTab('tab-profile')" id="btn-tab-profile" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 bg-blue-600 text-white shadow">
+                            <i class="fa-solid fa-user-gear"></i> Owner Profile
+                        </button>
+                        <button onclick="switchAdminTab('tab-news')" id="btn-tab-news" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+                            <i class="fa-solid fa-newspaper"></i> Important News
+                        </button>
+                        <button onclick="switchAdminTab('tab-portal')" id="btn-tab-portal" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+                            <i class="fa-solid fa-link"></i> Jobs / Admit Card / Result
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-3 p-6">
+                        <div id="tab-profile" class="admin-tab-content space-y-6">
+                            <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Profile Settings</h3>
+                            <div class="flex flex-col sm:flex-row items-center gap-6">
+                                <img id="adminProfilePreview" src="https://via.placeholder.com/150" alt="Preview" class="w-28 h-28 rounded-full object-cover border-4 border-blue-600 shadow">
+                                <div class="space-y-2 w-full">
+                                    <label class="block text-sm font-semibold">Change Owner Photo:</label>
+                                    <input type="file" id="ownerPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-200">
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-semibold mb-1">Owner / Center Name:</label>
+                                    <input type="text" id="ownerNameInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold mb-1">Email Address:</label>
+                                    <input type="email" id="ownerEmailInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                                </div>
+                                <button onclick="saveProfile()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow flex items-center gap-2">
+                                    <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="tab-news" class="admin-tab-content hidden space-y-6">
+                            <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Important News</h3>
+                            <div class="flex gap-3">
+                                <input type="text" id="newsInput" placeholder="Enter important news headline..." class="flex-1 p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                                <button onclick="addNews()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow whitespace-nowrap">
+                                    <i class="fa-solid fa-plus mr-1"></i> Add News
+                                </button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
+                                    <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+                                        <tr>
+                                            <th class="p-3">News Headline</th>
+                                            <th class="p-3 w-32">Date</th>
+                                            <th class="p-3 w-24 text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminNewsTable" class="divide-y divide-gray-200 dark:divide-gray-700"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="tab-portal" class="admin-tab-content hidden space-y-6">
+                            <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Portal Links</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <select id="portalCategory" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm">
+                                    <option value="job">Latest Job</option>
+                                    <option value="admit">Admit Card</option>
+                                    <option value="result">Result</option>
+                                </select>
+                                <input type="text" id="portalTitle" placeholder="Title (e.g. SSC CGL 2026)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                                <input type="url" id="portalUrl" placeholder="Direct URL (https://...)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
+                            </div>
+                            <button onclick="addPortalLink()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow">
+                                <i class="fa-solid fa-upload mr-1"></i> Upload Link
+                            </button>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
+                                    <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+                                        <tr>
+                                            <th class="p-3">Category</th>
+                                            <th class="p-3">Title</th>
+                                            <th class="p-3">Direct Link</th>
+                                            <th class="p-3 text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminPortalTable" class="divide-y divide-gray-200 dark:divide-gray-700"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        </main>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
-
-        <!-- PUBLIC DISPLAY SECTION -->
-        <div id="publicView" class="space-y-8">
+    <!-- FOOTER SECTION (EXACT MATCH WITH NEW SCREENSHOT) -->
+    <footer class="bg-[#0b1329] text-gray-300 pt-12 pb-6 px-4 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             
-            <!-- Owner Public Card & Notice -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Notice Board -->
-                <div class="md:col-span-2 bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-blue-900 space-y-3">
-                    <h3 class="text-lg font-bold text-blue-900 dark:text-blue-400 flex items-center gap-2">
-                        <i class="fa-solid fa-clipboard-list"></i> Notice Board / Zaroori Soochne
-                    </h3>
-                    <div class="bg-blue-50 dark:bg-gray-700/50 p-3 rounded-lg text-sm text-gray-700 dark:text-gray-200 space-y-2">
-                        <p>📌 <b>MP Online Portal:</b> Sabhi Prakar Ke Govt Form, Admit Card Aur Result Yahan Se Download Karein.</p>
-                        <p>📌 <b>Samagra ID & Aadhaar Link:</b> E-KYC Ki Suvidha Kendra Par Uplabdha Hai.</p>
-                    </div>
-                </div>
-
-                <!-- Center Banner Card -->
-                <div class="bg-blue-900 text-white p-5 rounded-xl shadow-md space-y-2 flex flex-col justify-between">
-                    <div>
-                        <span class="bg-amber-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase">Authorized Center</span>
-                        <h3 class="text-xl font-bold text-amber-300 mt-2" id="displayOwnerName">Kanha MP Online</h3>
-                        <p class="text-xs text-gray-200 mt-1"><i class="fa-solid fa-user mr-1"></i> Owner: <b>Jaggu Prasad Soni</b></p>
-                        <p class="text-xs text-gray-200"><i class="fa-solid fa-location-dot mr-1"></i> Near Baram Baba Prangan, Chakethi Anuppur</p>
-                    </div>
-                    <div class="flex gap-2 pt-3 border-t border-blue-800">
-                        <a href="tel:8989447014" class="flex-1 bg-amber-500 hover:bg-amber-600 text-blue-950 text-center font-bold text-xs py-1.5 rounded transition"><i class="fa-solid fa-phone mr-1"></i> Call</a>
-                        <a href="https://wa.me/918989447014" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white text-center font-bold text-xs py-1.5 rounded transition"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
-                    </div>
-                </div>
+            <!-- Column 1: Title & Description -->
+            <div class="space-y-3">
+                <h3 class="text-xl font-bold text-white tracking-wide">Kanha MP Online</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Aapka apna digital service center. Yahan sabhi prakar ke sarkari form, admit card, result, samagra KYC, PAN card, market updates aur online karya kiye jaate hain.
+                </p>
             </div>
 
-            <!-- Important News Public Alert -->
-            <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm">
-                <h3 class="text-lg font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-bullhorn animate-bounce"></i> Important News & Announcements
-                </h3>
-                <ul id="publicNewsList" class="list-disc list-inside space-y-1 text-sm font-medium">
-                    <!-- Dynamic Public News -->
+            <!-- Column 2: Contact Information -->
+            <div class="space-y-3">
+                <h3 class="text-xl font-bold text-white tracking-wide">Contact Information</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-start gap-2">
+                        <span class="text-amber-500 font-bold">🪪</span>
+                        <span>Owner: <strong class="text-white">Jaggu Prasad Soni</strong></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-amber-500 font-bold">📍</span>
+                        <span>Near Baram Baba Prangan, Chakethi Anuppur (M.P.)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-amber-500 font-bold">📞</span>
+                        <a href="tel:8989447014" class="hover:text-amber-400 transition">+91 8989447014, 7489538884</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-amber-500 font-bold">✉️</span>
+                        <a href="mailto:jpsonionline@gmail.com" class="hover:text-amber-400 transition">jpsonionline@gmail.com</a>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Portal Links (Jobs, Admit Card, Result) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Latest Jobs -->
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-blue-600">
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
-                        <i class="fa-solid fa-briefcase"></i> Latest Jobs
-                    </h3>
-                    <div id="publicJobsList" class="space-y-2 text-sm"></div>
-                </div>
-
-                <!-- Admit Cards -->
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-amber-500">
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
-                        <i class="fa-solid fa-id-card"></i> Admit Card
-                    </h3>
-                    <div id="publicAdmitList" class="space-y-2 text-sm"></div>
-                </div>
-
-                <!-- Results -->
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border-t-4 border-emerald-600">
-                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
-                        <i class="fa-solid fa-square-poll-vertical"></i> Results
-                    </h3>
-                    <div id="publicResultList" class="space-y-2 text-sm"></div>
-                </div>
-            </div>
-
-            <!-- EXACT POPULAR GOVERNMENT SERVICES (22 SERVICES AS PER IMAGE) -->
-            <div class="space-y-4">
-                <h3 class="text-xl font-bold text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 pb-2 inline-block">
-                    Popular Government Services
-                </h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    
-                    <!-- 1. Aadhaar Portal -->
-                    <a href="https://uidai.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-fingerprint"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Aadhaar Portal</span>
-                    </a>
-
-                    <!-- 2. PAN Card -->
-                    <a href="https://incometax.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-address-card"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">PAN Card</span>
-                    </a>
-
-                    <!-- 3. Samagra Portal -->
-                    <a href="https://samagra.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Samagra Portal</span>
-                    </a>
-
-                    <!-- 4. MP Bhulekh -->
-                    <a href="https://mpbhulekh.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP Bhulekh</span>
-                    </a>
-
-                    <!-- 5. MP Online Portal -->
-                    <a href="https://mponline.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP Online Portal</span>
-                    </a>
-
-                    <!-- 6. MP ESB (Vyapam) -->
-                    <a href="https://esb.mp.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center text-teal-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">MP ESB (Vyapam)</span>
-                    </a>
-
-                    <!-- 7. Domicile Certificate -->
-                    <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-house-user"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Domicile Certificate</span>
-                    </a>
-
-                    <!-- 8. Caste Certificate -->
-                    <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-certificate"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Caste Certificate</span>
-                    </a>
-
-                    <!-- 9. Income Certificate -->
-                    <a href="https://mpedistrict.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-file-invoice-dollar"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Income Certificate</span>
-                    </a>
-
-                    <!-- 10. Voter Card -->
-                    <a href="https://voters.eci.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-check-to-slot"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Voter Card</span>
-                    </a>
-
-                    <!-- 11. Scholarship Form -->
-                    <a href="https://scholarshipportal.mp.nic.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Scholarship Form</span>
-                    </a>
-
-                    <!-- 12. Resume / CV -->
-                    <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-file-lines"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Resume / CV</span>
-                    </a>
-
-                    <!-- 13. Driving License -->
-                    <a href="https://parivahan.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-id-badge"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Driving License</span>
-                    </a>
-
-                    <!-- 14. APAAR ID Card -->
-                    <a href="https://abc.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-id-card-clip"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">APAAR ID Card</span>
-                    </a>
-
-                    <!-- 15. Aayushman Card -->
-                    <a href="https://ayushmanup.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Aayushman Card</span>
-                    </a>
-
-                    <!-- 16. Passport Size Photo -->
-                    <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-pink-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-image"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Passport Size Photo</span>
-                    </a>
-
-                    <!-- 17. Photocopy / Print / Scan -->
-                    <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-print"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Photocopy / Print / Scan</span>
-                    </a>
-
-                    <!-- 18. Electricity Bill -->
-                    <a href="https://mponline.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Electricity Bill</span>
-                    </a>
-
-                    <!-- 19. Typing Work -->
-                    <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center text-orange-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-keyboard"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Typing Work</span>
-                    </a>
-
-                    <!-- 20. Lamination -->
-                    <a href="#publicView" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-lime-50 dark:bg-lime-900/30 flex items-center justify-center text-lime-500 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-copy"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Lamination</span>
-                    </a>
-
-                    <!-- 21. Sambal Card -->
-                    <a href="https://sambal.mp.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-hands-holding-child"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Sambal Card</span>
-                    </a>
-
-                    <!-- 22. Labor Card -->
-                    <a href="https://eshram.gov.in" target="_blank" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center group transition">
-                        <div class="w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center text-teal-400 text-xl mb-3 group-hover:scale-110 transition">
-                            <i class="fa-solid fa-person-digging"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200">Labor Card</span>
-                    </a>
-
-                </div>
-            </div>
-
-            <!-- MARKET NEWS SECTION (EXACT MATCH WITH SCREENSHOT 2) -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl border border-indigo-200 dark:border-indigo-900 p-6 shadow-sm space-y-4">
-                <div class="flex justify-between items-center border-b pb-3 border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
-                        <span class="text-indigo-600 font-black">||</span> Market News (शेयर बाजार समाचार)
-                    </h3>
-                    <span class="bg-indigo-100 text-indigo-700 font-bold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">LIVE NEWS</span>
-                </div>
-
-                <div class="space-y-4 text-sm divide-y divide-gray-100 dark:divide-gray-700">
-                    <div class="pt-2">
-                        <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
-                            <span class="text-teal-500 font-black">||</span> Nifty 50 touches new all-time high driven by Banking & IT stocks rally.
-                        </p>
-                        <p class="text-xs text-gray-400 ml-5 mt-0.5">Today, 11:30 AM</p>
-                    </div>
-                    <div class="pt-3">
-                        <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
-                            <span class="text-teal-500 font-black">||</span> RBI Monetary Policy Update: Key benchmark repo rates remain unchanged.
-                        </p>
-                        <p class="text-xs text-gray-400 ml-5 mt-0.5">Yesterday</p>
-                    </div>
-                    <div class="pt-3">
-                        <p class="font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
-                            <span class="text-amber-500 font-black">||</span> BTC/USD surges past $67,000 level amid strong global market buying.
-                        </p>
-                        <p class="text-xs text-gray-400 ml-5 mt-0.5">2 days ago</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- IPO UPDATES SECTION (EXACT MATCH WITH SCREENSHOT 2) -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 shadow-sm space-y-4">
-                <div class="flex justify-between items-center border-b pb-3 border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
-                        <span class="text-amber-500 font-black">||</span> IPO Updates (नए IPO व GMP)
-                    </h3>
-                    <span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">IPO ALERT</span>
-                </div>
-
-                <div class="space-y-3">
-                    <!-- OPEN NOW IPO CARD -->
-                    <div class="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40 rounded-xl p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
-                        <div>
-                            <span class="bg-emerald-600 text-white font-extrabold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">OPEN NOW</span>
-                            <h4 class="font-bold text-gray-800 dark:text-gray-100 mt-1">Mainboard Tech IPO</h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Price Band: ₹240 - ₹252 | Lot Size: 60 Shares</p>
-                        </div>
-                        <div>
-                            <span class="bg-emerald-100 text-emerald-700 font-black text-xs px-3 py-1.5 rounded-lg border border-emerald-200">GMP: +45%</span>
-                        </div>
-                    </div>
-
-                    <!-- UPCOMING IPO CARD -->
-                    <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
-                        <div>
-                            <span class="bg-blue-600 text-white font-extrabold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">UPCOMING</span>
-                            <h4 class="font-bold text-gray-800 dark:text-gray-100 mt-1">Green Energy Infra IPO</h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Opening Date: Next Week | Premium Expected</p>
-                        </div>
-                        <div>
-                            <span class="bg-gray-200 text-gray-600 font-bold text-xs px-3 py-1.5 rounded-lg">Coming Soon</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Column 3: Quick Navigation -->
+            <div class="space-y-3">
+                <h3 class="text-xl font-bold text-white tracking-wide">Quick Navigation</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-center gap-2">
+                        <span class="text-amber-500 font-bold">📌</span>
+                        <button onclick="toggleModal('loginModal')" class="hover:text-amber-400 transition text-left">Owner Login Portal</button>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-amber-500 font-bold">📌</span>
+                        <a href="https://samagra.gov.in" target="_blank" class="hover:text-amber-400 transition">Samagra Portal</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-amber-500 font-bold">📌</span>
+                        <a href="https://mpbhulekh.gov.in" target="_blank" class="hover:text-amber-400 transition">MP Bhulekh (Khasra)</a>
+                    </li>
+                </ul>
             </div>
 
         </div>
 
-        <!-- OWNER DASHBOARD SECTION (Visible after Login) -->
-        <div id="adminDashboard" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div class="bg-blue-900 text-white p-4 flex justify-between items-center border-b border-blue-800">
-                <h2 class="text-lg font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-gauge-high text-amber-400"></i> Owner Control Panel
-                </h2>
-                <span class="text-xs bg-amber-500 text-blue-950 font-black px-2.5 py-1 rounded">ADMIN ACTIVE</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 min-h-[500px]">
-                <!-- Sidebar Tabs -->
-                <div class="bg-gray-50 dark:bg-gray-900/50 p-4 border-r border-gray-200 dark:border-gray-700 space-y-2">
-                    <button onclick="switchAdminTab('tab-profile')" id="btn-tab-profile" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 bg-blue-600 text-white shadow">
-                        <i class="fa-solid fa-user-gear"></i> Owner Profile
-                    </button>
-                    <button onclick="switchAdminTab('tab-news')" id="btn-tab-news" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
-                        <i class="fa-solid fa-newspaper"></i> Important News
-                    </button>
-                    <button onclick="switchAdminTab('tab-portal')" id="btn-tab-portal" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
-                        <i class="fa-solid fa-link"></i> Jobs / Admit Card / Result
-                    </button>
-                </div>
-
-                <!-- Tab Content Panels -->
-                <div class="md:col-span-3 p-6">
-                    
-                    <!-- 1. PROFILE TAB -->
-                    <div id="tab-profile" class="admin-tab-content space-y-6">
-                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Profile Settings</h3>
-                        <div class="flex flex-col sm:flex-row items-center gap-6">
-                            <img id="adminProfilePreview" src="https://via.placeholder.com/150" alt="Preview" class="w-28 h-28 rounded-full object-cover border-4 border-blue-600 shadow">
-                            <div class="space-y-2 w-full">
-                                <label class="block text-sm font-semibold">Change Owner Photo:</label>
-                                <input type="file" id="ownerPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-200">
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold mb-1">Owner / Center Name:</label>
-                                <input type="text" id="ownerNameInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold mb-1">Email Address:</label>
-                                <input type="email" id="ownerEmailInput" class="w-full p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
-                            </div>
-                            <button onclick="saveProfile()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow flex items-center gap-2">
-                                <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 2. IMPORTANT NEWS TAB -->
-                    <div id="tab-news" class="admin-tab-content hidden space-y-6">
-                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Important News</h3>
-                        <div class="flex gap-3">
-                            <input type="text" id="newsInput" placeholder="Enter important news headline..." class="flex-1 p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
-                            <button onclick="addNews()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow whitespace-nowrap">
-                                <i class="fa-solid fa-plus mr-1"></i> Add News
-                            </button>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
-                                <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
-                                    <tr>
-                                        <th class="p-3">News Headline</th>
-                                        <th class="p-3 w-32">Date</th>
-                                        <th class="p-3 w-24 text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="adminNewsTable" class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <!-- Dynamic Admin News Rows -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- 3. PORTAL LINKS TAB -->
-                    <div id="tab-portal" class="admin-tab-content hidden space-y-6">
-                        <h3 class="text-xl font-bold border-b pb-2 text-blue-900 dark:text-blue-400">Manage Portal Links</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <select id="portalCategory" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm">
-                                <option value="job">Latest Job</option>
-                                <option value="admit">Admit Card</option>
-                                <option value="result">Result</option>
-                            </select>
-                            <input type="text" id="portalTitle" placeholder="Title (e.g. SSC CGL 2026)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
-                            <input type="url" id="portalUrl" placeholder="Direct URL (https://...)" class="p-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm">
-                        </div>
-                        <button onclick="addPortalLink()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow">
-                            <i class="fa-solid fa-upload mr-1"></i> Upload Link
-                        </button>
-
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-700">
-                                <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
-                                    <tr>
-                                        <th class="p-3">Category</th>
-                                        <th class="p-3">Title</th>
-                                        <th class="p-3">Direct Link</th>
-                                        <th class="p-3 text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="adminPortalTable" class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <!-- Dynamic Admin Portal Rows -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <!-- Copyright Line -->
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800/80 text-center text-xs text-gray-400">
+            © 2026 Kanha MP Online & CSC Center. All Rights Reserved. Designed for Jaggu Prasad Soni.
         </div>
-
-    </main>
+    </footer>
 
     <!-- OWNER LOGIN MODAL -->
     <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -528,7 +491,6 @@
                 </button>
             </div>
 
-            <!-- LOGIN FORM VIEW -->
             <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider mb-1">Username:</label>
@@ -553,7 +515,6 @@
                 </button>
             </form>
 
-            <!-- FORGOT PASSWORD STEP 1 -->
             <div id="forgotStep1" class="hidden space-y-4">
                 <p class="text-xs text-gray-600 dark:text-gray-300 font-medium">OTP bhejne ke liye kripya apna mobile number select karein:</p>
                 <div class="space-y-2">
@@ -572,7 +533,6 @@
                 <button onclick="showLoginView()" class="w-full text-xs text-gray-500 hover:underline text-center block">Back to Login</button>
             </div>
 
-            <!-- FORGOT PASSWORD STEP 2 -->
             <div id="forgotStep2" class="hidden space-y-4">
                 <div class="bg-blue-50 dark:bg-blue-950/40 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-xs text-blue-800 dark:text-blue-300">
                     OTP safaltapoorvak mobile par bhej diya gaya hai! (Demo OTP: <b>1234</b>)
@@ -601,7 +561,6 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // DATA STORAGE INITIALIZATION
         let siteData = JSON.parse(localStorage.getItem('kanhaPortalData')) || {
             credentials: {
                 username: "Kanhajii",
@@ -609,7 +568,7 @@
             },
             owner: {
                 name: "Kanha MP Online Center",
-                email: "contact@kanhaponline.com",
+                email: "jpsonionline@gmail.com",
                 photo: "https://via.placeholder.com/150"
             },
             news: [
@@ -622,24 +581,20 @@
             ]
         };
 
-        // Theme Toggle
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
         }
 
-        // Modal Toggle
         function toggleModal(id) {
             document.getElementById(id).classList.toggle('hidden');
             showLoginView();
         }
 
-        // Save State
         function saveData() {
             localStorage.setItem('kanhaPortalData', JSON.stringify(siteData));
             renderAll();
         }
 
-        // Password Show/Hide Toggle
         function togglePasswordVisibility(inputId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
@@ -654,7 +609,6 @@
             }
         }
 
-        // Views Control in Login Modal
         function showLoginView() {
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('forgotStep1').classList.add('hidden');
@@ -667,7 +621,6 @@
             document.getElementById('forgotStep2').classList.add('hidden');
         }
 
-        // OTP & Reset Password Logic
         let selectedNumber = "";
         function sendOTP() {
             const radios = document.getElementsByName('otpNumber');
@@ -695,7 +648,6 @@
                 return;
             }
 
-            // Update Password in Storage
             siteData.credentials.password = newPass;
             saveData();
 
@@ -707,7 +659,6 @@
             showLoginView();
         }
 
-        // Owner Login Logic
         function handleLogin(e) {
             e.preventDefault();
             const user = document.getElementById('loginUsername').value.trim();
@@ -736,7 +687,6 @@
             document.getElementById('logoutNavBtn').classList.remove('flex');
         }
 
-        // Tab Switching Logic
         function switchAdminTab(tabId) {
             document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(btn => {
@@ -750,7 +700,6 @@
             activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
         }
 
-        // Profile Update Logic
         function handlePhotoUpload(e) {
             const file = e.target.files[0];
             if (file) {
@@ -770,7 +719,6 @@
             alert('Profile Saved Successfully!');
         }
 
-        // Add News Logic
         function addNews() {
             const input = document.getElementById('newsInput');
             if (!input.value.trim()) return alert('Enter news text!');
@@ -791,7 +739,6 @@
             }
         }
 
-        // Portal Link Add Logic
         function addPortalLink() {
             const cat = document.getElementById('portalCategory').value;
             const title = document.getElementById('portalTitle').value.trim();
@@ -818,15 +765,12 @@
             }
         }
 
-        // Render UI
         function renderAll() {
-            // Render Profile
             document.getElementById('adminProfilePreview').src = siteData.owner.photo;
             document.getElementById('displayOwnerName').innerText = siteData.owner.name;
             document.getElementById('ownerNameInput').value = siteData.owner.name;
             document.getElementById('ownerEmailInput').value = siteData.owner.email;
 
-            // Render News
             const publicNews = document.getElementById('publicNewsList');
             const adminNews = document.getElementById('adminNewsTable');
             publicNews.innerHTML = '';
@@ -845,7 +789,6 @@
                 `;
             });
 
-            // Render Portal Links
             const publicJobs = document.getElementById('publicJobsList');
             const publicAdmit = document.getElementById('publicAdmitList');
             const publicResult = document.getElementById('publicResultList');
@@ -881,7 +824,6 @@
             });
         }
 
-        // Initialize Page
         renderAll();
     </script>
 </body>
