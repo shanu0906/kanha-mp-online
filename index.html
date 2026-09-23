@@ -539,9 +539,11 @@
     </main>
   </div>
 
-  // Auth Keys & Local state
-        const AUTH_USER = "Kanhajii";
-        const AUTH_PASS = "Jpsoni@123";
+ <!-- AUTH & UI NAVIGATION SCRIPT -->
+  <script>
+    // Auth Credentials
+    const AUTH_USER = "Kanhajii";
+    const AUTH_PASS = "Jpsoni@123";
     let isLoggedIn = false;
 
     function openLoginModal() {
@@ -567,7 +569,8 @@
 
     function checkAdminLogin() {
       const inputPass = document.getElementById("adminPasswordInput").value;
-      if (inputPass === ADMIN_PASSWORD) {
+      
+      if (inputPass === AUTH_PASS) {
         isLoggedIn = true;
         closeLoginModal();
         document.getElementById("publicPortalView").classList.add("hidden");
@@ -589,6 +592,7 @@
       });
       btn.className = "tab-btn w-full flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg font-medium";
     }
+  </script>
   </script>
 
   <!-- FIREBASE LOGIC SCRIPT -->
