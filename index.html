@@ -120,422 +120,32 @@
                     </ul>
                 </div>
 
-                <!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanha MP Online - CSC Service Center & Citizen Digital Portal</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-  </style>
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+                <!-- Jobs, Admit Card, Result Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Latest Jobs -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-blue-600">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
+                            <i class="fa-solid fa-briefcase"></i> Latest Jobs
+                        </h3>
+                        <div id="publicJobsList" class="space-y-2 text-sm"></div>
+                    </div>
 
-  <!-- Header -->
-  <header class="bg-blue-900 text-white p-4 shadow-md flex justify-between items-center px-6">
-    <div class="flex items-center gap-3">
-      <div class="bg-amber-400 text-blue-950 font-black px-3 py-1 rounded-lg text-xl">KMP</div>
-      <div>
-        <h1 class="text-xl font-bold leading-none">Kanha MP Online</h1>
-        <p class="text-xs text-blue-200 mt-1">CSC Service Center & Citizen Digital Portal</p>
-      </div>
-    </div>
-    <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition">
-      <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
-    </button>
-  </header>
+                    <!-- Admit Card -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-amber-500">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
+                            <i class="fa-solid fa-id-card"></i> Admit Card
+                        </h3>
+                        <div id="publicAdmitList" class="space-y-2 text-sm"></div>
+                    </div>
 
-  <!-- Main Container -->
-  <div class="max-w-7xl mx-auto p-4 md:p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-
-    <!-- Left Sidebar -->
-    <aside class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm space-y-4">
-      <div class="text-center py-4 border-b border-gray-100 dark:border-gray-700">
-        <div class="w-20 h-20 rounded-full mx-auto flex items-center justify-center text-blue-600 mb-2 overflow-hidden border-2 border-blue-500 bg-blue-50">
-          <img id="sidebarProfileImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover hidden" alt="Profile">
-          <i id="sidebarProfileIcon" class="fa-solid fa-user-gear text-3xl"></i>
-        </div>
-        <h2 id="sidebarOwnerName" class="font-bold text-lg">Jaggu Prasad Soni</h2>
-        <p class="text-xs text-gray-500">Owner</p>
-      </div>
-
-      <nav class="space-y-1 text-sm font-medium">
-        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">SECTIONS</p>
-        
-        <button onclick="switchTab('profile-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-          <i class="fa-solid fa-user"></i> Profile
-        </button>
-
-        <button onclick="switchTab('upload-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <i class="fa-solid fa-cloud-arrow-up text-emerald-600"></i> Firebase Upload
-        </button>
-
-        <button onclick="switchTab('content-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <i class="fa-solid fa-list-check"></i> Live Content Sections
-        </button>
-      </nav>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="md:col-span-3 space-y-6">
-
-      <!-- WELCOME BANNER -->
-      <div class="bg-blue-50 dark:bg-gray-800 p-6 rounded-2xl flex justify-between items-center border border-blue-100 dark:border-gray-700">
-        <div>
-          <h2 id="bannerWelcomeName" class="text-2xl font-bold text-gray-800 dark:text-white">Welcome back, Jaggu Prasad Soni!</h2>
-          <p class="text-xs text-gray-500 mt-1">Manage your website and sections live with Firebase database.</p>
-        </div>
-        <div class="text-blue-600 text-4xl">
-          <i class="fa-solid fa-desktop"></i>
-        </div>
-      </div>
-
-      <!-- TAB 1: OWNER PROFILE & VISITING CARD GENERATOR -->
-      <div id="profile-tab" class="tab-content active space-y-6">
-        <section class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-          <h3 class="text-xl font-bold text-blue-900 dark:text-blue-400 mb-6 flex items-center gap-2">
-            <i class="fa-solid fa-user-gear"></i> Owner Profile Details
-          </h3>
-
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium mb-1">Upload Photo:</label>
-              <input type="file" id="profilePhotoInput" accept="image/*" class="w-full p-2 border rounded-xl dark:bg-gray-700 dark:border-gray-600 text-sm">
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium mb-1">Owner Display Name:</label>
-                <input type="text" id="ownerNameInput" value="Jaggu Prasad Soni" class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium mb-1">Date of Birth (DOB):</label>
-                <input type="date" id="ownerDobInput" value="1979-10-01" class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium mb-1">Sex / Gender:</label>
-              <select id="ownerGenderInput" class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
-                <option value="Male" selected>Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <button id="saveProfileBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition flex items-center gap-2 text-sm shadow-md">
-              <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
-            </button>
-          </div>
-        </section>
-
-        <!-- VISITING CARD -->
-        <section class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-          <h3 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-address-card text-blue-600"></i> Generated Professional Visiting Card
-          </h3>
-
-          <div class="max-w-md mx-auto bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl p-6 shadow-2xl relative overflow-hidden border border-blue-400/30">
-            <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
-              <div>
-                <span class="bg-amber-400 text-blue-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Verified CSC Center</span>
-                <h4 class="text-lg font-black tracking-wide text-amber-300 mt-1">KANHA MP ONLINE</h4>
-                <p class="text-[10px] text-blue-200">CSC Service Center & Digital Portal</p>
-              </div>
-              <i class="fa-solid fa-building-columns text-2xl text-amber-400"></i>
-            </div>
-
-            <div class="flex items-center gap-4">
-              <div class="w-20 h-20 rounded-xl overflow-hidden border-2 border-amber-400 bg-white/10 shrink-0 flex items-center justify-center">
-                <img id="cardPhoto" src="https://via.placeholder.com/150" class="w-full h-full object-cover hidden" alt="Owner">
-                <i id="cardPhotoIcon" class="fa-solid fa-user text-3xl text-amber-300"></i>
-              </div>
-              
-              <div class="space-y-1">
-                <h5 id="cardOwnerName" class="text-base font-bold text-white">Jaggu Prasad Soni</h5>
-                <p class="text-xs text-amber-300 font-medium"><i class="fa-solid fa-user-shield mr-1"></i> Authorized Owner</p>
-                <div class="text-[11px] text-gray-300 space-y-0.5">
-                  <p><i class="fa-solid fa-cake-candles mr-1 text-blue-300"></i> DOB: <span id="cardDob">01/10/1979</span></p>
-                  <p><i class="fa-solid fa-venus-mars mr-1 text-blue-300"></i> Gender: <span id="cardGender">Male</span></p>
+                    <!-- Results -->
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-emerald-600">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
+                            <i class="fa-solid fa-chart-simple"></i> Results
+                        </h3>
+                        <div id="publicResultList" class="space-y-2 text-sm"></div>
+                    </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-[10px] text-gray-400">
-              <span>Anuppur, Madhya Pradesh</span>
-              <span class="text-emerald-400 flex items-center gap-1"><i class="fa-solid fa-circle text-[6px]"></i> Active Portal</span>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- TAB 2: FIREBASE UPLOAD PANEL -->
-      <div id="upload-tab" class="tab-content space-y-6">
-        <section class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-          <h2 class="text-xl font-bold text-emerald-600 mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-database"></i> Push Updates to Firebase Realtime Database
-          </h2>
-
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium mb-1">Select Category:</label>
-              <select id="categorySelect" class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-                <option value="Jobs">Jobs</option>
-                <option value="Admit Card">Admit Card</option>
-                <option value="Result Section">Result Section</option>
-                <option value="Important News">Important News</option>
-                <option value="Exam Form">Exam Form</option>
-                <option value="Scholarship Form">Scholarship Form</option>
-                <option value="AI Tools">AI Tools</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium mb-1">Title / Details:</label>
-              <input type="text" id="titleInput" placeholder="e.g. MPPEB New Recruitment 2026" class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium mb-1">Upload Link (URL):</label>
-              <input type="url" id="linkInput" placeholder="https://..." class="w-full p-2.5 border rounded-xl dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-            </div>
-
-            <button id="uploadBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl font-medium transition flex items-center gap-2 text-sm shadow-md">
-              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently to Firebase
-            </button>
-          </div>
-        </section>
-      </div>
-
-      <!-- TAB 3: LIVE CONTENT SECTIONS GRID -->
-      <div id="content-tab" class="tab-content space-y-6">
-        
-        <!-- ROW 1: Jobs, Admit Card, Results -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-blue-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
-              <i class="fa-solid fa-briefcase"></i> Latest Jobs
-            </h3>
-            <div id="publicJobsList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-amber-500">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
-              <i class="fa-solid fa-id-card"></i> Admit Card
-            </h3>
-            <div id="publicAdmitList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-emerald-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
-              <i class="fa-solid fa-chart-simple"></i> Results
-            </h3>
-            <div id="publicResultList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-        </div>
-
-        <!-- ROW 2: Important News, Exam Form, Scholarship Form -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-red-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-red-600">
-              <i class="fa-solid fa-bullhorn"></i> Important News
-            </h3>
-            <div id="publicNewsList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-purple-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-purple-600">
-              <i class="fa-solid fa-file-pen"></i> Exam Form
-            </h3>
-            <div id="publicExamList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-indigo-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-indigo-600">
-              <i class="fa-solid fa-graduation-cap"></i> Scholarship Form
-            </h3>
-            <div id="publicScholarshipList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-        </div>
-
-        <!-- ROW 3: AI Tools -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-t-4 border-cyan-600">
-            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-600">
-              <i class="fa-solid fa-robot"></i> AI Tools
-            </h3>
-            <div id="publicAiToolsList" class="space-y-2 text-sm min-h-[50px]"></div>
-          </div>
-        </div>
-
-      </div>
-
-    </main>
-  </div>
-
-  <!-- UI Navigation Script -->
-  <script>
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.className = "tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700";
-      });
-      btn.className = "tab-btn w-full flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 dark:bg-blue-950/30 rounded-lg font-medium";
-    }
-  </script>
-
-  <!-- Firebase Script Logic -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, onValue, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "kanha-mp-online.firebaseapp.com",
-      databaseURL: "https://kanha-mp-online-default-rtdb.firebaseio.com",
-      projectId: "kanha-mp-online",
-      storageBucket: "kanha-mp-online.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    // 1. Profile Data Save Logic
-    document.getElementById("saveProfileBtn").addEventListener("click", () => {
-      const name = document.getElementById("ownerNameInput").value.trim();
-      const dob = document.getElementById("ownerDobInput").value;
-      const gender = document.getElementById("ownerGenderInput").value;
-      const photoFile = document.getElementById("profilePhotoInput").files[0];
-
-      if (!name) {
-        alert("Please enter Owner Name!");
-        return;
-      }
-
-      function saveToFirebase(photoBase64) {
-        const profileRef = ref(db, "ownerProfile");
-        const profileData = {
-          name: name,
-          dob: dob,
-          gender: gender,
-          updatedAt: Date.now()
-        };
-        if (photoBase64) profileData.photo = photoBase64;
-
-        set(profileRef, profileData).then(() => {
-          alert("Owner Profile Firebase par permanently save ho gaya hai!");
-        }).catch(err => alert("Error saving profile: " + err.message));
-      }
-
-      if (photoFile) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          saveToFirebase(e.target.result);
-        };
-        reader.readAsDataURL(photoFile);
-      } else {
-        saveToFirebase(null);
-      }
-    });
-
-    // 2. Profile Data Live Load
-    onValue(ref(db, "ownerProfile"), (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        if (data.name) {
-          document.getElementById("sidebarOwnerName").innerText = data.name;
-          document.getElementById("bannerWelcomeName").innerText = `Welcome back, ${data.name}!`;
-          document.getElementById("cardOwnerName").innerText = data.name;
-          document.getElementById("ownerNameInput").value = data.name;
-        }
-        if (data.dob) {
-          document.getElementById("cardDob").innerText = data.dob;
-          document.getElementById("ownerDobInput").value = data.dob;
-        }
-        if (data.gender) {
-          document.getElementById("cardGender").innerText = data.gender;
-          document.getElementById("ownerGenderInput").value = data.gender;
-        }
-        if (data.photo) {
-          document.getElementById("sidebarProfileImg").src = data.photo;
-          document.getElementById("sidebarProfileImg").classList.remove("hidden");
-          document.getElementById("sidebarProfileIcon").classList.add("hidden");
-
-          document.getElementById("cardPhoto").src = data.photo;
-          document.getElementById("cardPhoto").classList.remove("hidden");
-          document.getElementById("cardPhotoIcon").classList.add("hidden");
-        }
-      }
-    });
-
-    // 3. Category Updates Push Logic
-    document.getElementById("uploadBtn").addEventListener("click", () => {
-      const category = document.getElementById("categorySelect").value;
-      const title = document.getElementById("titleInput").value.trim();
-      const url = document.getElementById("linkInput").value.trim();
-
-      if (!title || !url) {
-        alert("Title aur URL dono bharein!");
-        return;
-      }
-
-      let dbPath = "updates/jobs";
-      if (category === "Admit Card") dbPath = "updates/admitCards";
-      else if (category === "Result Section") dbPath = "updates/results";
-      else if (category === "Important News") dbPath = "updates/news";
-      else if (category === "Exam Form") dbPath = "updates/examForms";
-      else if (category === "Scholarship Form") dbPath = "updates/scholarships";
-      else if (category === "AI Tools") dbPath = "updates/aiTools";
-
-      push(ref(db, dbPath), { title: title, url: url, timestamp: Date.now() })
-        .then(() => {
-          alert(`${category} Firebase par Upload ho gaya!`);
-          document.getElementById("titleInput").value = "";
-          document.getElementById("linkInput").value = "";
-        });
-    });
-
-    // 4. Fetch Function for Live Content
-    function fetchContent(path, elementId) {
-      const container = document.getElementById(elementId);
-      onValue(ref(db, path), (snapshot) => {
-        container.innerHTML = "";
-        const data = snapshot.val();
-        if (data) {
-          Object.keys(data).reverse().forEach((key) => {
-            const item = data[key];
-            const a = document.createElement("a");
-            a.href = item.url || "#";
-            a.target = "_blank";
-            a.className = "block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium transition flex items-center justify-between border-b text-xs";
-            a.innerHTML = `<span>${item.title}</span> <i class="fa-solid fa-arrow-right-long opacity-60"></i>`;
-            container.appendChild(a);
-          });
-        } else {
-          container.innerHTML = `<p class="text-xs text-gray-400 py-1">No updates</p>`;
-        }
-      });
-    }
-
-    fetchContent("updates/jobs", "publicJobsList");
-    fetchContent("updates/admitCards", "publicAdmitList");
-    fetchContent("updates/results", "publicResultList");
-    fetchContent("updates/news", "publicNewsList");
-    fetchContent("updates/examForms", "publicExamList");
-    fetchContent("updates/scholarships", "publicScholarshipList");
-    fetchContent("updates/aiTools", "publicAiToolsList");
-  </script>
-</body>
-</html>
 
                 <!-- POPULAR GOVERNMENT SERVICES (18 Grid Items) -->
                 <div class="space-y-4">
@@ -700,107 +310,431 @@
 
             </div>
 
-            <!-- OWNER DASHBOARD -->
-            <div id="adminDashboard" class="hidden bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[600px]">
-                    
-                    <!-- LEFT SIDEBAR -->
-                    <div class="lg:col-span-1 bg-slate-50 dark:bg-gray-900/60 p-5 border-r border-gray-200 dark:border-gray-700 flex flex-col justify-between">
-                        <div class="space-y-6">
-                            <!-- Owner Info Block -->
-                            <div class="flex flex-col items-center text-center pb-4 border-b dark:border-gray-700">
-                                <div class="w-20 h-20 rounded-full bg-blue-100 dark:bg-gray-700 flex items-center justify-center text-blue-900 dark:text-blue-300 text-3xl font-black shadow mb-3 border-2 border-blue-500 overflow-hidden">
-                                    <img id="sidebarOwnerImg" src="" alt="Profile" class="w-full h-full object-cover hidden">
-                                    <i id="sidebarOwnerIcon" class="fa-solid fa-user-tie"></i>
-                                </div>
-                                <h4 class="font-bold text-gray-800 dark:text-gray-100 text-base displayOwnerName">Jaggu Prasad Soni</h4>
-                                <span class="text-xs text-gray-500 font-medium">Owner</span>
-                            </div>
+           
+  <!-- ========================================================= -->
+  <!-- 2. ADMIN DASHBOARD (HIDDEN BY DEFAULT - ONLY AFTER LOGIN) -->
+  <!-- ========================================================= -->
+  <div id="adminDashboardView" class="hidden max-w-7xl mx-auto p-4 md:p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
 
-                            <!-- Nav Menu Options -->
-                            <div class="space-y-1">
-                                <p class="text-[10px] font-bold uppercase text-gray-400 tracking-wider mb-2">SECTIONS</p>
-                                <button onclick="switchTab('tab-profile')" id="nav-tab-profile" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 bg-blue-50 text-blue-600 font-bold dark:bg-blue-900/40 dark:text-blue-400">
-                                    <i class="fa-regular fa-user text-sm"></i> Profile
-                                </button>
-                                <button onclick="switchTab('tab-firebase-upload')" id="nav-tab-firebase-upload" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                    <i class="fa-solid fa-cloud-arrow-up text-sm text-emerald-500"></i> Firebase Upload
-                                </button>
-                                <button onclick="switchTab('tab-job')" id="nav-tab-job" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                    <i class="fa-solid fa-briefcase text-sm"></i> Latest Job
-                                </button>
-                                <button onclick="switchTab('tab-admit')" id="nav-tab-admit" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                    <i class="fa-regular fa-id-card text-sm"></i> Admit Card
-                                </button>
-                                <button onclick="switchTab('tab-result')" id="nav-tab-result" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                    <i class="fa-solid fa-chart-column text-sm"></i> Result Section
-                                </button>
-                                <button onclick="switchTab('tab-news')" id="nav-tab-news" class="nav-btn w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                    <i class="fa-solid fa-bullhorn text-sm"></i> Important News
-                                </button>
-                            </div>
-                        </div>
+    <!-- Left Sidebar -->
+    <aside class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm space-y-4 border">
+      <div class="text-center py-4 border-b border-gray-100">
+        <div class="w-20 h-20 rounded-full mx-auto flex items-center justify-center text-blue-600 mb-2 overflow-hidden border-2 border-blue-500 bg-blue-50">
+          <img id="sidebarProfileImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover hidden" alt="Profile">
+          <i id="sidebarProfileIcon" class="fa-solid fa-user-gear text-3xl"></i>
+        </div>
+        <h2 id="sidebarOwnerName" class="font-bold text-lg">Jaggu Prasad Soni</h2>
+        <p class="text-xs text-gray-500">Owner / Admin</p>
+      </div>
 
-                        <button onclick="logout()" class="w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center gap-3 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition mt-6">
-                            <i class="fa-solid fa-right-from-bracket"></i> Exit Panel
-                        </button>
-                    </div>
+      <nav class="space-y-1 text-sm font-medium">
+        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">ADMIN CONTROLS</p>
+        <button onclick="switchTab('profile-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg">
+          <i class="fa-solid fa-user"></i> Profile
+        </button>
+        <button onclick="switchTab('upload-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cloud-arrow-up text-emerald-600"></i> Firebase Upload
+        </button>
+        <button onclick="switchTab('content-tab', this)" class="tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-list-check"></i> Live Content Sections
+        </button>
+      </nav>
+    </aside>
 
-                    <!-- RIGHT MAIN PANEL -->
-                    <div class="lg:col-span-4 p-6 space-y-6 bg-slate-50/40 dark:bg-gray-800">
-                        
-                        <!-- Header Banner -->
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700/50 dark:to-gray-700/30 border border-blue-100 dark:border-gray-600 rounded-2xl p-6 flex justify-between items-center relative overflow-hidden">
-                            <div class="space-y-1 max-w-md z-10">
-                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                                    Welcome back, <span class="displayOwnerName">Jaggu Prasad Soni</span>!
-                                </h2>
-                                <p class="text-xs text-gray-500 dark:text-gray-300">
-                                    Manage your website and sections live with Firebase database.
-                                </p>
-                            </div>
-                            <div class="hidden sm:block text-blue-600 text-6xl opacity-80">
-                                <i class="fa-solid fa-desktop"></i>
-                            </div>
-                        </div>
+    <!-- Main Content Area -->
+    <main class="md:col-span-3 space-y-6">
 
-                        <!-- TAB CONTENT AREA -->
-                        <div class="bg-white dark:bg-gray-700 p-6 rounded-2xl border border-gray-100 dark:border-gray-600">
-                            
-                            <!-- PROFILE TAB -->
-                            <div id="tab-profile" class="tab-content space-y-6">
-                                <h3 class="text-lg font-bold border-b pb-2 flex items-center gap-2 text-blue-900 dark:text-blue-400">
-                                    <i class="fa-solid fa-user-gear"></i> Owner Profile Details
-                                </h3>
+      <!-- WELCOME BANNER -->
+      <div class="bg-blue-50 p-6 rounded-2xl flex justify-between items-center border border-blue-100">
+        <div>
+          <h2 id="bannerWelcomeName" class="text-2xl font-bold text-gray-800">Welcome back, Jaggu Prasad Soni!</h2>
+          <p class="text-xs text-gray-500 mt-1">Manage your website and sections live with Firebase database.</p>
+        </div>
+        <div class="text-blue-600 text-4xl">
+          <i class="fa-solid fa-desktop"></i>
+        </div>
+      </div>
 
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-                                    <div class="sm:col-span-2">
-                                        <label class="block text-xs font-bold mb-1">Upload Photo:</label>
-                                        <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)" class="w-full text-xs p-2 border rounded-xl dark:bg-gray-800 dark:border-gray-600">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold mb-1">Owner Display Name:</label>
-                                        <input type="text" id="inputOwnerName" value="Jaggu Prasad Soni" class="w-full p-2.5 text-xs rounded-xl border dark:bg-gray-800 dark:border-gray-600">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold mb-1">Date of Birth (DOB):</label>
-                                        <input type="date" id="inputDob" class="w-full p-2.5 text-xs rounded-xl border dark:bg-gray-800 dark:border-gray-600">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold mb-1">Sex / Gender:</label>
-                                        <select id="inputSex" class="w-full p-2.5 text-xs rounded-xl border dark:bg-gray-800 dark:border-gray-600">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="flex items-end">
-                                        <button onclick="saveOwnerProfile()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 rounded-xl shadow transition">
-                                            <i class="fa-solid fa-floppy-disk mr-1"></i> Save Profile Details
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+      <!-- TAB 1: OWNER PROFILE & VISITING CARD GENERATOR -->
+      <div id="profile-tab" class="tab-content active space-y-6">
+        <section class="bg-white p-6 rounded-2xl shadow-sm border">
+          <h3 class="text-xl font-bold text-blue-900 mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-user-gear"></i> Owner Profile Details
+          </h3>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Upload Photo:</label>
+              <input type="file" id="profilePhotoInput" accept="image/*" class="w-full p-2 border rounded-xl text-sm">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1">Owner Display Name:</label>
+                <input type="text" id="ownerNameInput" value="Jaggu Prasad Soni" class="w-full p-2.5 border rounded-xl text-sm">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-1">Date of Birth (DOB):</label>
+                <input type="date" id="ownerDobInput" value="1979-10-01" class="w-full p-2.5 border rounded-xl text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1">Sex / Gender:</label>
+              <select id="ownerGenderInput" class="w-full p-2.5 border rounded-xl text-sm">
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <button id="saveProfileBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition flex items-center gap-2 text-sm shadow-md">
+              <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
+            </button>
+          </div>
+        </section>
+
+        <!-- VISITING CARD -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border">
+          <h3 class="text-lg font-bold text-gray-700 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-address-card text-blue-600"></i> Generated Professional Visiting Card
+          </h3>
+
+          <div class="max-w-md mx-auto bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl p-6 shadow-2xl relative overflow-hidden border border-blue-400/30">
+            <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+              <div>
+                <span class="bg-amber-400 text-blue-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Verified CSC Center</span>
+                <h4 class="text-lg font-black tracking-wide text-amber-300 mt-1">KANHA MP ONLINE</h4>
+                <p class="text-[10px] text-blue-200">CSC Service Center & Digital Portal</p>
+              </div>
+              <i class="fa-solid fa-building-columns text-2xl text-amber-400"></i>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-20 h-20 rounded-xl overflow-hidden border-2 border-amber-400 bg-white/10 shrink-0 flex items-center justify-center">
+                <img id="cardPhoto" src="https://via.placeholder.com/150" class="w-full h-full object-cover hidden" alt="Owner">
+                <i id="cardPhotoIcon" class="fa-solid fa-user text-3xl text-amber-300"></i>
+              </div>
+              
+              <div class="space-y-1">
+                <h5 id="cardOwnerName" class="text-base font-bold text-white">Jaggu Prasad Soni</h5>
+                <p class="text-xs text-amber-300 font-medium"><i class="fa-solid fa-user-shield mr-1"></i> Authorized Owner</p>
+                <div class="text-[11px] text-gray-300 space-y-0.5">
+                  <p><i class="fa-solid fa-cake-candles mr-1 text-blue-300"></i> DOB: <span id="cardDob">01/10/1979</span></p>
+                  <p><i class="fa-solid fa-venus-mars mr-1 text-blue-300"></i> Gender: <span id="cardGender">Male</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-[10px] text-gray-400">
+              <span>Anuppur, Madhya Pradesh</span>
+              <span class="text-emerald-400 flex items-center gap-1"><i class="fa-solid fa-circle text-[6px]"></i> Active Portal</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: FIREBASE UPLOAD PANEL -->
+      <div id="upload-tab" class="tab-content space-y-6">
+        <section class="bg-white p-6 rounded-2xl shadow-sm border">
+          <h2 class="text-xl font-bold text-emerald-600 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-database"></i> Push Updates to Firebase Realtime Database
+          </h2>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Select Category:</label>
+              <select id="categorySelect" class="w-full p-2.5 border rounded-xl text-sm">
+                <option value="Jobs">Jobs</option>
+                <option value="Admit Card">Admit Card</option>
+                <option value="Result Section">Result Section</option>
+                <option value="Important News">Important News</option>
+                <option value="Exam Form">Exam Form</option>
+                <option value="Scholarship Form">Scholarship Form</option>
+                <option value="AI Tools">AI Tools</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1">Title / Details:</label>
+              <input type="text" id="titleInput" placeholder="e.g. MPPEB New Recruitment 2026" class="w-full p-2.5 border rounded-xl text-sm">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1">Upload Link (URL):</label>
+              <input type="url" id="linkInput" placeholder="https://..." class="w-full p-2.5 border rounded-xl text-sm">
+            </div>
+
+            <button id="uploadBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl font-medium transition flex items-center gap-2 text-sm shadow-md">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently to Firebase
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: LIVE CONTENT SECTIONS GRID -->
+      <div id="content-tab" class="tab-content space-y-6">
+        
+        <!-- ROW 1: Jobs, Admit Card, Results -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-blue-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-blue-600">
+              <i class="fa-solid fa-briefcase"></i> Latest Jobs
+            </h3>
+            <div id="publicJobsList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-amber-500 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-amber-500">
+              <i class="fa-solid fa-id-card"></i> Admit Card
+            </h3>
+            <div id="publicAdmitList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-emerald-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-emerald-600">
+              <i class="fa-solid fa-chart-simple"></i> Results
+            </h3>
+            <div id="publicResultList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Important News, Exam Form, Scholarship Form -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-red-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-red-600">
+              <i class="fa-solid fa-bullhorn"></i> Important News
+            </h3>
+            <div id="publicNewsList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-purple-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-purple-600">
+              <i class="fa-solid fa-file-pen"></i> Exam Form
+            </h3>
+            <div id="publicExamList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-indigo-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-indigo-600">
+              <i class="fa-solid fa-graduation-cap"></i> Scholarship Form
+            </h3>
+            <div id="publicScholarshipList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+        </div>
+
+        <!-- ROW 3: AI Tools -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-t-4 border-cyan-600 border">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-600">
+              <i class="fa-solid fa-robot"></i> AI Tools
+            </h3>
+            <div id="publicAiToolsList" class="space-y-2 text-sm min-h-[50px]"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  // Auth Keys & Local state
+        const AUTH_USER = "Kanhajii";
+        const AUTH_PASS = "Jpsoni@123";
+    let isLoggedIn = false;
+
+    function openLoginModal() {
+      document.getElementById("loginModal").classList.remove("hidden");
+    }
+
+    function closeLoginModal() {
+      document.getElementById("loginModal").classList.add("hidden");
+    }
+
+    function toggleAuth() {
+      if (isLoggedIn) {
+        // Logout Action
+        isLoggedIn = false;
+        document.getElementById("adminDashboardView").classList.add("hidden");
+        document.getElementById("publicPortalView").classList.remove("hidden");
+        document.getElementById("authBtnText").innerText = "Owner Login";
+        alert("Aap successfully Logout ho gaye hain.");
+      } else {
+        openLoginModal();
+      }
+    }
+
+    function checkAdminLogin() {
+      const inputPass = document.getElementById("adminPasswordInput").value;
+      if (inputPass === ADMIN_PASSWORD) {
+        isLoggedIn = true;
+        closeLoginModal();
+        document.getElementById("publicPortalView").classList.add("hidden");
+        document.getElementById("adminDashboardView").classList.remove("hidden");
+        document.getElementById("authBtnText").innerText = "Logout Admin";
+        document.getElementById("adminPasswordInput").value = "";
+        alert("Login Successful! Admin Panel is active now.");
+      } else {
+        alert("Sahi Password Daalein!");
+      }
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = "tab-btn w-full flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100";
+      });
+      btn.className = "tab-btn w-full flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg font-medium";
+    }
+  </script>
+
+  <!-- FIREBASE LOGIC SCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "kanha-mp-online.firebaseapp.com",
+      databaseURL: "https://kanha-mp-online-default-rtdb.firebaseio.com",
+      projectId: "kanha-mp-online",
+      storageBucket: "kanha-mp-online.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Profile Save
+    document.getElementById("saveProfileBtn").addEventListener("click", () => {
+      const name = document.getElementById("ownerNameInput").value.trim();
+      const dob = document.getElementById("ownerDobInput").value;
+      const gender = document.getElementById("ownerGenderInput").value;
+      const photoFile = document.getElementById("profilePhotoInput").files[0];
+
+      if (!name) {
+        alert("Please enter Owner Name!");
+        return;
+      }
+
+      function saveToFirebase(photoBase64) {
+        const profileRef = ref(db, "ownerProfile");
+        const profileData = {
+          name: name,
+          dob: dob,
+          gender: gender,
+          updatedAt: Date.now()
+        };
+        if (photoBase64) profileData.photo = photoBase64;
+
+        set(profileRef, profileData).then(() => {
+          alert("Owner Profile Firebase par permanently save ho gaya hai!");
+        }).catch(err => alert("Error saving profile: " + err.message));
+      }
+
+      if (photoFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) { saveToFirebase(e.target.result); };
+        reader.readAsDataURL(photoFile);
+      } else {
+        saveToFirebase(null);
+      }
+    });
+
+    // Fetch Profile
+    onValue(ref(db, "ownerProfile"), (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        if (data.name) {
+          document.getElementById("sidebarOwnerName").innerText = data.name;
+          document.getElementById("displayOwnerName").innerText = data.name;
+          document.getElementById("bannerWelcomeName").innerText = `Welcome back, ${data.name}!`;
+          document.getElementById("cardOwnerName").innerText = data.name;
+          document.getElementById("ownerNameInput").value = data.name;
+        }
+        if (data.dob) {
+          document.getElementById("cardDob").innerText = data.dob;
+          document.getElementById("ownerDobInput").value = data.dob;
+        }
+        if (data.gender) {
+          document.getElementById("cardGender").innerText = data.gender;
+          document.getElementById("ownerGenderInput").value = data.gender;
+        }
+        if (data.photo) {
+          document.getElementById("sidebarProfileImg").src = data.photo;
+          document.getElementById("sidebarProfileImg").classList.remove("hidden");
+          document.getElementById("sidebarProfileIcon").classList.add("hidden");
+
+          document.getElementById("cardPhoto").src = data.photo;
+          document.getElementById("cardPhoto").classList.remove("hidden");
+          document.getElementById("cardPhotoIcon").classList.add("hidden");
+        }
+      }
+    });
+
+    // Content Upload
+    document.getElementById("uploadBtn").addEventListener("click", () => {
+      const category = document.getElementById("categorySelect").value;
+      const title = document.getElementById("titleInput").value.trim();
+      const url = document.getElementById("linkInput").value.trim();
+
+      if (!title || !url) {
+        alert("Title aur URL dono bharein!");
+        return;
+      }
+
+      let dbPath = "updates/jobs";
+      if (category === "Admit Card") dbPath = "updates/admitCards";
+      else if (category === "Result Section") dbPath = "updates/results";
+      else if (category === "Important News") dbPath = "updates/news";
+      else if (category === "Exam Form") dbPath = "updates/examForms";
+      else if (category === "Scholarship Form") dbPath = "updates/scholarships";
+      else if (category === "AI Tools") dbPath = "updates/aiTools";
+
+      push(ref(db, dbPath), { title: title, url: url, timestamp: Date.now() })
+        .then(() => {
+          alert(`${category} Firebase par Upload ho gaya!`);
+          document.getElementById("titleInput").value = "";
+          document.getElementById("linkInput").value = "";
+        });
+    });
+
+    // Fetch Live Sections
+    function fetchContent(path, elementId) {
+      const container = document.getElementById(elementId);
+      onValue(ref(db, path), (snapshot) => {
+        container.innerHTML = "";
+        const data = snapshot.val();
+        if (data) {
+          Object.keys(data).reverse().forEach((key) => {
+            const item = data[key];
+            const a = document.createElement("a");
+            a.href = item.url || "#";
+            a.target = "_blank";
+            a.className = "block p-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition flex items-center justify-between border-b text-xs";
+            a.innerHTML = `<span>${item.title}</span> <i class="fa-solid fa-arrow-right-long opacity-60"></i>`;
+            container.appendChild(a);
+          });
+        } else {
+          container.innerHTML = `<p class="text-xs text-gray-400 py-1">No updates</p>`;
+        }
+      });
+    }
+
+    fetchContent("updates/jobs", "publicJobsList");
+    fetchContent("updates/admitCards", "publicAdmitList");
+    fetchContent("updates/results", "publicResultList");
+    fetchContent("updates/news", "publicNewsList");
+    fetchContent("updates/examForms", "publicExamList");
+    fetchContent("updates/scholarships", "publicScholarshipList");
+    fetchContent("updates/aiTools", "publicAiToolsList");
+  </script>
+</body>
+</html>
 
                             <!-- FIREBASE UPLOAD DIRECT TAB -->
                             <div id="tab-firebase-upload" class="tab-content hidden space-y-4">
